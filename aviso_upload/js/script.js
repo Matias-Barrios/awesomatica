@@ -8,13 +8,63 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
     $scope.uploadme;
 	$scope.aviso={};
 	$scope.aviso.images = [];
+	$scope.aviso.visible = false;
+	$scope.aviso.sensible = false;
 	var object={
 		src : ''
 	};
 	$scope.aviso.images.push(object);
 		
 	$scope.subir_informacion = function() {
-		$scope.aviso.images[0].src = "images/" + $scope.image_name;
+		 $scope.result_upload = "";
+		/* EJEMPLO DE POST REQUEST
+		{
+			"api_password" : "shellbomb",
+			"file_name" : "ojitos",
+			"file_content" : {
+				  "images": [
+					{
+					  "src": ""
+					}
+				  ],
+				  "visible": true,
+				  "sensible": false,
+				  "name": "Ferreteria Venus",
+				  "address": "Teniente Galeano 2358",
+				  "description": "Una ferreteria re pipi cucu",
+				  "tags": "ferreteria barraca reparacion tornillos",
+				  "phones": [
+					"22271616"
+				  ]
+				}
+			}
+		*/
+		$scope.aviso.phones = $scope.phones_input.split(";");
+		var post_data = {};
+		post_data.api_password = $scope.api_password_input;
+		post_data.file_name = $scope.file_name_input;
+		post_data.file_content = $scope.aviso;
+		$http({
+							method: 'POST',
+							url: 'http://45.33.116.147:3000/put_aviso',
+							headers: {
+							   'Content-Type': 'application/json'
+							},
+							data:post_data
+							
+							  
+							}).then(function successCallback(response) {
+									// this callback will be called asynchronously
+									// when the response is available
+									 $scope.result_upload = "Success!!";																				
+									
+							}, function errorCallback(err) {
+										// called asynchronously if an error occurs
+									// or server returns response with an error status.
+									$scope.result_upload = "Error : " + err;									
+									
+							});
+		
 	}
 
     $scope.uploadImage = function() {
@@ -65,6 +115,7 @@ main_app.directive("fileread", [
       },
       link: function(scope, element, attributes) {
         element.bind("change", function(changeEvent) {
+			
           var reader = new FileReader();
 		  reader.onload = function(loadEvent) {
             scope.$apply(function() {

@@ -27,8 +27,11 @@
 		<div id="main_div" class ="col-md-5">
 			<div class="col-md-4">
 				<label> API Password : </label>
-				<input id="api_password" type="text"></input>
-
+				<input id="api_password" type="text" ng-model="api_password_input"></input>
+				<label> File Name : </label>
+				<input id="file_name" type="text" ng-model="file_name_input"></input>
+				
+				
 				<label> Nombre : </label>
 				<input id="aviso_name" type="text" ng-model="aviso.name" ></input>
 				
@@ -36,10 +39,10 @@
 				<input id="aviso_description" type="text"  ng-model="aviso.address" ></input>
 				
 				<label> Telefonos (separados por ";") : </label>
-				<input id="aviso_description" type="text"  ng-model="aviso.phones" ></input>
+				<input id="aviso_description" type="text"  ng-model="phones_input" ></input>
 				
 				<label> Descripcion : </label>
-				<input id="aviso_description" type="text"  ng-model="aviso.description" ></input>
+				<textarea id="aviso_description"  cols="40" rows="5" ng-model="aviso.description" ></textarea>
 				
 				<label> Tags : </label>
 				<input id="aviso_tags" type="text"  ng-model="aviso.tags" ></input>
@@ -75,11 +78,12 @@
 					<label> Subir a servidor : </label]><BR>
 					<button id="RUN" name="mis_fotos" ng-click="subir_informacion()" >Subir</button><BR>
 			</div>
-			<div class="col-md-12">
-			<pre> {{ aviso | json }}</pre>
-			</div>
 		</div>
+		
+		
 	</body>	
+	
+	
 		
 	
 </html>
