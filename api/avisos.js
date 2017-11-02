@@ -17,7 +17,7 @@ function Get_Avisos(callback){
 	try {
 	fs.readdirSync(testFolder).forEach(file => {
 		console.log(file);
-		results.push(fs.readFileSync('./avisos_json/' + file,"utf8"));
+		results.push(JSON.parse(fs.readFileSync('./avisos_json/' + file,"utf8")));
 		});
 	} catch (err) {
 		console.log(err);
