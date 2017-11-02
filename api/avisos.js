@@ -35,7 +35,7 @@ function Put_aviso(data,callback){
 		return;
 	   }
 	try {
-		fs.writeFileSync(testFolder + "/" + data.file_name + ".json", data.file_content);
+		fs.writeFileSync(testFolder + "/" + data.file_name + ".json", JSON.stringify(data.file_content));
 	} catch (err) {
 		console.log(err);
 		callback(results,err);
