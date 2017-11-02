@@ -4,9 +4,18 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','ngMate
 
 main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','localStorageService','$location','$filter', function($scope,$http,NgTableParams,localStorageService,$location,$filter) {
 		
-		 //the image
+		
     $scope.uploadme;
-	
+	$scope.aviso={};
+	$scope.aviso.images = [];
+	var object={
+		src : ''
+	};
+	$scope.aviso.images.push(object);
+		
+	$scope.subir_informacion = function() {
+		$scope.aviso.images[0].src = "images/" + $scope.image_name;
+	}
 
     $scope.uploadImage = function() {
 	  $scope.result_upload = "";
@@ -57,7 +66,7 @@ main_app.directive("fileread", [
       link: function(scope, element, attributes) {
         element.bind("change", function(changeEvent) {
           var reader = new FileReader();
-          reader.onload = function(loadEvent) {
+		  reader.onload = function(loadEvent) {
             scope.$apply(function() {
               scope.fileread = loadEvent.target.result;
             });

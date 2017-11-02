@@ -30,16 +30,25 @@
 				<input id="api_password" type="text"></input>
 
 				<label> Nombre : </label>
-				<input id="aviso_name" type="text"></input>
+				<input id="aviso_name" type="text" ng-model="aviso.name" ></input>
 				
 				<label> Direccion : </label>
-				<input id="aviso_description" type="text"></input>
+				<input id="aviso_description" type="text"  ng-model="aviso.address" ></input>
 				
 				<label> Telefonos (separados por ";") : </label>
-				<input id="aviso_description" type="text"></input>
+				<input id="aviso_description" type="text"  ng-model="aviso.phones" ></input>
 				
 				<label> Descripcion : </label>
-				<input id="aviso_description" type="text"></input>
+				<input id="aviso_description" type="text"  ng-model="aviso.description" ></input>
+				
+				<label> Tags : </label>
+				<input id="aviso_tags" type="text"  ng-model="aviso.tags" ></input>
+				
+				<label> Visible : </label>
+				<input id="aviso_checkBox_visible" type="checkbox" ng-model="aviso.visible" ></input>
+				
+				<label> Sensible : </label>
+				<input id="aviso_checkBox_sensible" type="checkbox" ng-model="aviso.sensible" ></input>
 			</div>
 				
 			
@@ -47,12 +56,12 @@
 		<div id="fotos_div" class="col-md-12">
 			<div class="col-md-4">
 					<div class="col-md-12">
-						<input type="file" fileread="uploadme" />
+						<input type="file" ng-model="image_name" fileread="uploadme" />
 					</div>
 					<div class="col-md-3" class="col-md-12">
 						
 						<label> Image preview </label>
-						<img src="{{uploadme}}" width="200" height="150"></img>
+						<img src="{{uploadme}}" width="200" height="150" ></img>
 						
 										
 					</div>
@@ -64,7 +73,10 @@
 			
 			<div class="col-md-12">
 					<label> Subir a servidor : </label]><BR>
-					<button id="RUN" name="mis_fotos" >Subir</button><BR>
+					<button id="RUN" name="mis_fotos" ng-click="subir_informacion()" >Subir</button><BR>
+			</div>
+			<div class="col-md-12">
+			<pre> {{ aviso | json }}</pre>
 			</div>
 		</div>
 	</body>	
