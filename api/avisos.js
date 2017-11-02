@@ -121,3 +121,26 @@ app.listen(PORT, function () {
   console.log('Example app listening on port ' + PORT + '!');
 });
 
+
+/* EJEMPLO de request body
+{
+	"api_password" : "shellbomb",
+	"file_name" : "ojitos"
+	"file_content" : {
+		  "images": [
+		    {
+		      "src": ""
+		    }
+		  ],
+		  "visible": true,
+		  "sensible": false,
+		  "name": "Ferreteria Venus",
+		  "address": "Teniente Galeano 2358",
+		  "description": "Una ferreteria re pipi cucu",
+		  "tags": "ferreteria barraca reparacion tornillos",
+		  "phones": [
+		    "22271616"
+		  ]
+		}
+}
+*/
