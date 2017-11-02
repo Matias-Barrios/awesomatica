@@ -45,8 +45,10 @@
 
 			
 			<h3> </h3>
-			<table ng-table="tableParams" class="table table-condensed table-bordered table-striped" show-filter="true" export-csv='csv'  >
-			 
+			<p ng-show="error_on_view" ><font color="red">{{ error_on_view }}</font></p>
+			<p ng-show="total_number_of_avisos != 0" > Viendo <font color="#006cd9"> {{ number_of_filtered_results }}</font> de <font color="#006cd9"> {{ total_number_of_avisos }}</font> </p>
+			<table id="main_table" ng-table="tableParams" class="table table-condensed table-bordered table-striped" show-filter="true" export-csv='csv'  >
+			
 				<tr ng-repeat="aviso in $data" highlight>
 					
 						<td data-title="'Realice una busqueda introduciendo una palabra como por ejemplo panaderia o futbol...'"  filter="{ 'tags': 'text'}" >

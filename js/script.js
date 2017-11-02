@@ -28,47 +28,21 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','ngMate
 	
 	main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','localStorageService','$location','$filter', function($scope,$http,NgTableParams,localStorageService,$location,$filter) {
 		
-		var aviso = { 
-			name:"Panaderia La Fragata",
-			address : "AV J BELLONI 4353",
-			phones : ['2223453'],
-			description :"Esta es la propia Panaderia!! Aca se amasan los verdareos panes",
-			tags : 'panaderia biscochos pan comida',
-			images: [
-			  {
-				src: 'images/lafragata1.jpg'
-			  },
-			  {
-				src: 'images/lafragata2.png'
-			  },
-			  {
-				src: 'images/lafragata3.jpg'
-			  },
-			  
-			]
-		};
-		var aviso2 = { 
-			name:"Plaza Deportes N°8",
-			address : "AV J BELLONI 4413",
-			phones : ['22223123'],
-			description :"Plaza de deportes. Cuenta con cancha de Futbol, Basketball y piscina. Hay actividades durante el verano",
-			tags : 'plaza deportes futbol basketball piscina',
-			images: [
-			  {
-				src: 'images/plaza1.jpg'
-			  },
-			  {
-				src: 'images/plaza2.jpg'
-			  },
-			 		  
-			]
-		};
 		
-		var avisos = [];
-		avisos.push(aviso);
-		avisos.push(aviso2);
-		
-		$scope.tableParams = new NgTableParams({																		
+		$scope.get_avisos = function(){
+			$scope.api_response = {};
+			$scope.total_number_of_avisos = 0; 	
+			$scope.error_on_view = "";			
+			$http({
+						method: 'GET',
+						url: 'http://45.33.116.147:3000/get_avisos' 
+						}).then(function successCallback(response) {
+							$scope.api_response = response.data;
+							console.log("response.data : " + response.data);
+							console.log("response.data[0].name : " + response.data[0].name);
+							$scope.total_number_of_avisos = response.data.length; 							
+							$scope.tableParams = new NgTableParams({
+									count: 5								
 								},{
 								
 									getData: function(params) {
@@ -88,8 +62,9 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','ngMate
 													}
 												}
 											})
-										var theData = angular.copy(avisos);
+										var theData = angular.copy($scope.api_response);
 										var filteredData = params.filter() ? $filter('filter')(theData, filters) : theData;
+										console.log("filteredData " + filteredData);
 										orderedData = $filter('orderBy')(filteredData, params.orderBy());
 										$scope.table_filtered_and_ordered_data = orderedData;
 										$scope.number_of_filtered_results = filteredData.length;
@@ -98,7 +73,18 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','ngMate
 									}
 								});
 			
+								
+						}, function errorCallback(err) {
+								$scope.error_on_view = "Errors occurred : " + err;
+						});
+		}
+		
+		$scope.get_avisos();
+		
+			
 	}]); 
 	
   
   
+
+	
