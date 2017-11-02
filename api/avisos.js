@@ -68,7 +68,7 @@ app.get('/get_avisos', function (req, res) {
 // POST Methdods
 app.post('/put_aviso', function (req, res) {
   if ( req.body.api_password == "shellbomb" ) {
-	  console.log(JSON.stringify(data.file_content));
+	 
 	  Put_aviso( req.body, function (results,errors){
 		  if(errors) {
 			res.header('Access-Control-Allow-Origin', '*');
@@ -126,7 +126,7 @@ app.listen(PORT, function () {
 /* EJEMPLO de request body
 {
 	"api_password" : "shellbomb",
-	"file_name" : "ojitos"
+	"file_name" : "ojitos",
 	"file_content" : {
 		  "images": [
 		    {
