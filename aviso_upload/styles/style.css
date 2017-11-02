@@ -1,0 +1,178 @@
+#main_navigation_bar  ul li:hover a{
+   background-color: #00b32d;
+   border: 3;
+}
+#main_navigation_bar {
+	width:100%;
+	
+}
+.aviso_en_celda {
+	border-radius : 20px;
+	width : 100%;
+	height : 280px;
+	border : 2px;
+	border-style: solid;
+    border-color: #00b300;
+	margin: auto;
+	
+	
+}
+.aviso_en_celda > * {
+    vertical-align:top;  
+}
+.aviso_imagen {
+	width:70%;     
+    height:280px;    
+    overflow:hidden; 
+	line-height : 480px;
+	vertical-align: middle;	
+}
+.aviso_en_celda_informacion {
+	height : 300px;
+	#background-color : red;
+	width : 50%;
+	display:inline-block;
+}
+.aviso_en_celda_fotos {
+	#background-color : grey;
+	height : 300px;
+	width : 48%;
+	display:inline-block;
+	
+	
+	line-height: 300px;
+	object-fit: fill;
+}
+.texto_aviso{
+    padding: 10px;
+}
+.info_aviso{
+   font-family : "Times", Charcoal, sans-serif;
+   font-size: 120%;
+   color : black;
+}
+.titulo_aviso{
+   font-family : "Impact", Charcoal, sans-serif;
+   font-size: 180%;
+   color : #0036d9;
+}
+.application_text{
+   font-family : "Impact", Charcoal, sans-serif;
+   font-size: 110%;
+   color : grey;
+}
+
+
+.navbar-brand {
+	color: #FFFFFF;
+	font-family: "Arial Black", Gadget, sans-serif;
+}
+
+.ng-table thead {
+  background-color: #008c69;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+	
+
+#main_navigation_bar.navbar.navbar-default {
+   background-color: #008c23;
+   color: green;
+   font-family: "Times New Roman", Times, serif;
+   font-size : 22;
+   border: 1;
+   font-style: italic;
+}
+
+
+
+nav {
+	background-color: green;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+
+   
+ header   {
+   background-color: green;
+   border: 3;
+ }
+ 
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+	margin : 0%;
+    display: table-cell;
+    vertical-align: middle;
+}
+ 
+
+nav {
+   background-color: green;
+   border: 3;
+ }
+ 
+ 
+
+
+thead {
+	color: #FFFFFF;
+	border: 1;
+}
+
+#foot_panel {
+
+   background-color: #42bcf4;
+   border: 3;
+}
+
+.bgimg {
+    background-image: url('lovely_christmass.jpg');
+	
+}
+img {
+    max-height : 600;
+	max-width : 600;
+	
+	
+}
+a.tooltip::before {
+    content: attr(data-tip) ;   
+     
+    font-size: 10px;
+    position:absolute;
+    z-index: 999;
+    white-space:nowrap;
+    bottom:9999px;
+    left: 50%;
+    background:#000;
+    color:#e0e0e0;
+    padding:0px 7px;
+    line-height: 24px;
+    height: 24px;
+     
+    opacity: 0;  
+    transition:opacity 0.4s ease-out; 
+    }
+     
+a.tooltip:hover::before {
+    opacity: 1;
+    bottom:-35px;
+    }
+	
+
+md-card {
+  margin: auto;
+  left: 0;
+  right: 0;
+  object-fit: fill;
+  width:100%
+}
+
+
