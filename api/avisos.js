@@ -5,8 +5,6 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 
-
-
 // Constants
 var PORT = 3000;
 
@@ -118,6 +116,12 @@ app.post('*', function (req, res) {
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.status(500).send('Unknown method!')
 });
+
+
+app.listen(PORT, function () {
+  console.log('Example app listening on port ' + PORT + '!');
+});
+
 
 /* EJEMPLO de request body
 {
