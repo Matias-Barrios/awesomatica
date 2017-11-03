@@ -3,20 +3,8 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-var router = express.Router();
-var multer = require('multer');
 
 
-  
-
-var uploading = multer({
-  dest: __dirname + '../public/uploads/',
-  limits: {fileSize: 7000000, files:1},
-});
-
-router.post('/upload', uploading, function(req, res) {
-
-});
 
 
 // Constants
@@ -130,14 +118,6 @@ app.post('*', function (req, res) {
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.status(500).send('Unknown method!')
 });
-
-
-module.exports = router;
-
-app.listen(PORT, function () {
-  console.log('Example app listening on port ' + PORT + '!');
-});
-
 
 /* EJEMPLO de request body
 {
