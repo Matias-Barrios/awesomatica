@@ -16,11 +16,12 @@ var storage = multer.diskStorage({
 		callback(null, './files_uploaded')
 	},
 	filename: function(req, file, callback) {
-		callback(null, file.fieldname + path.extname(file.originalname))
+		callback(null, "fotoavisos_" + file.fieldname + path.extname(file.originalname))
 	}
 })
 
 app.post('/upload_aviso', function(req, res) {
+	console.log(" Got a request : " + req.url);
 	var upload = multer({
 		storage: storage,
 		fileFilter: function(req, file, callback) {
@@ -32,6 +33,7 @@ app.post('/upload_aviso', function(req, res) {
 		}
 	}).single('userFile');
 	upload(req, res, function(err) {
+		console.log(" Success! ");
 		res.end('File is uploaded')
 	})
 })
