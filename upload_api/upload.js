@@ -13,7 +13,7 @@ app.get('/api/file', function(req, res) {
 
 var storage = multer.diskStorage({
 	destination: function(req, file, callback) {
-		callback(null, './files_uploaded')
+		callback(null, '/var/www')
 	},
 	filename: function(req, file, callback) {
 		callback(null, "fotoavisos_" + file.fieldname + path.extname(file.originalname))
