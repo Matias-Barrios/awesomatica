@@ -26,7 +26,7 @@ app.post('/upload_aviso', function(req, res) {
 		storage: storage,
 		fileFilter: function(req, file, callback) {
 			var ext = path.extname(file.originalname)
-			console.log(file.originalname);
+			
 			if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
 				return callback(res.end('Only images are allowed'), null)
 			}
@@ -34,7 +34,7 @@ app.post('/upload_aviso', function(req, res) {
 		}
 	}).single('userFile');
 	upload(req, res, function(err) {
-		console.log(" Success! ");
+		console.log(" Success! " + JSON.stringify(req));
 		res.end('File is uploaded')
 	})
 })
