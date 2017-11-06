@@ -26,6 +26,7 @@ app.post('/upload_aviso', function(req, res) {
 		storage: storage,
 		fileFilter: function(req, file, callback) {
 			var ext = path.extname(file.originalname)
+			console.log(file.originalname);
 			if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
 				return callback(res.end('Only images are allowed'), null)
 			}
