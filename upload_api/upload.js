@@ -1,44 +1,39 @@
-var express = require("express")
-var multer = require('multer')
-var app = express()
-var path = require('path')
-const PORT = 4000;
-
-/*var ejs = require('ejs')
-app.set('view engine', 'ejs')
-
-app.get('/api/file', function(req, res) {
-	res.render('index')
-})*/
-
-var storage = multer.diskStorage({
-	destination: function(req, file, callback) {
-		callback(null, '/var/www')
-	},
-	filename: function(req, file, callback) {
-		callback(null, "fotoavisos_" + file.fieldname + path.extname(file.originalname))
-	}
-})
-
-app.post('/upload_aviso', function(req, res) {
-	console.log(" Got a request : " + req.url);
-	var upload = multer({
-		storage: storage,
-		fileFilter: function(req, file, callback) {
-			var ext = path.extname(file.originalname)
-			
-			if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
-				return callback(res.end('Only images are allowed'), null)
-			}
-			callback(null, true)
-		}
-	}).single('userFile');
-	upload(req, res, function(err) {
-		console.log(" Success! " + JSON.stringify(req));
-		res.end('File is uploaded')
-	})
-})
-
-app.listen(PORT, function() {
-	console.log('Node.js listening on port ' + PORT)
-})
+    const PORT=4000;
+    var express = require('express'); 
+    var app = express(); 
+    var bodyParser = require('body-parser');
+    var multer = require('multer');
+    app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "http://localhost");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    });
+    /** Serving from the same express Server
+    No cors required */
+    app.use(express.static('../client'));
+    app.use(bodyParser.json());
+    var storage = multer.diskStorage({ //multers disk storage settings
+        destination: function (req, file, cb) {
+            cb(null, './uploads/')
+        },
+        filename: function (req, file, cb) {
+            var datetimestamp = Date.now();
+            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
+        }
+    });
+    var upload = multer({ //multer settings
+                    storage: storage
+                }).single('file');
+    /** API path that will upload the files */
+    app.post('/upload', function(req, res) {
+        upload(req,res,function(err){
+            if(err){
+                 res.json({error_code:1,err_desc:err});
+                 return;
+            }
+             res.json({error_code:0,err_desc:null});
+        })<br />
+    });
+    app.listen(PORT, function(){
+        console.log('Application running on ' + PORT + '...');
+    });
