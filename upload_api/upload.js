@@ -39,6 +39,15 @@
 		    }
 		     res.json({error_code:0,err_desc:null});
 		});
+	}else {
+	  	   if(err){
+			res.header('Access-Control-Allow-Origin', '*');
+			res.header('Access-Control-Allow-Methods', '*');
+			res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+				res.header('Content-Type', 'text/html'); 
+				res.status(500).json("You are not authorized for this...");
+			return;
+		    }
 	}
     });
 
