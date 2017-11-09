@@ -14,7 +14,7 @@
     app.use(bodyParser.json());
     var storage = multer.diskStorage({ //multers disk storage settings
         destination: function (req, file, cb) {
-            cb(null, './uploads/')
+            cb(null, './files_uploaded/')
         },
         filename: function (req, file, cb) {
             var datetimestamp = Date.now();
