@@ -18,6 +18,7 @@
         },
         filename: function (req, file, cb) {
             var datetimestamp = Date.now();
+		console.log("File name : " + JSON.stringify(file));
             cb(null, "foto_avisos_" +  file.originalname)
         }
     });
@@ -26,7 +27,7 @@
                 }).single('file');
     /** API path that will upload the files */
     app.post('/upload_aviso', function(req, res) {
-        console.log("Got a request : " +  req.url + " File : " + req.file.originalname );
+        
 	upload(req,res,function(err){
             if(err){
                 res.header('Access-Control-Allow-Origin', '*');
