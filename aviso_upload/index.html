@@ -24,62 +24,66 @@
 	  <script src="js/script.js"></script>
     </head>
 	<body>
-		<div id="main_div" class ="col-md-5">
-			<div class="col-md-4">
-				<label> API Password : </label>
-				<input id="api_password" type="text" ng-model="api_password_input"></input>
-				<label> File Name : </label>
-				<input id="file_name" type="text" ng-model="file_name_input"></input>
+		<div id="main_div" class ="col-md-2 ">
+			<div class="col-md-12 header_div">
+				<p><b><u> Crear Aviso </u></b></p>
+			</div>
+			<div class="col-md-12 info_div">
+				<label> API Password : </label><BR>
+				<input maxlength="15" size="38" id="api_password" type="text" ng-model="api_password_input"></input><BR>
+				<label> File Name : </label><BR>
+				<input maxlength="38" size="38" id="file_name" type="text" ng-model="file_name_input"></input><BR>
 				
+				<BR>
+				<label> Nombre : </label><BR>
+				<input maxlength="38" size="38" id="aviso_name" type="text" ng-model="aviso.name" ></input><BR>
 				
-				<label> Nombre : </label>
-				<input id="aviso_name" type="text" ng-model="aviso.name" ></input>
+				<label> Direccion : </label><BR>
+				<input maxlength="38" size="38" id="aviso_description" type="text"  ng-model="aviso.address" ></input><BR>
 				
-				<label> Direccion : </label>
-				<input id="aviso_description" type="text"  ng-model="aviso.address" ></input>
+				<label> Telefonos (separados por ";") : </label><BR>
+				<input maxlength="38" size="38" id="aviso_description" type="text"  ng-model="phones_input" ></input><BR>
 				
-				<label> Telefonos (separados por ";") : </label>
-				<input id="aviso_description" type="text"  ng-model="phones_input" ></input>
+				<label> Descripcion : </label><BR>
+				<textarea id="aviso_description"  cols="40" rows="5" ng-model="aviso.description" ></textarea><BR>
 				
-				<label> Descripcion : </label>
-				<textarea id="aviso_description"  cols="40" rows="5" ng-model="aviso.description" ></textarea>
+				<label> Tags : </label><BR>
+				<input maxlength="500" size="38" size="38"id="aviso_tags" type="text"  ng-model="aviso.tags" ></input><BR>
 				
-				<label> Tags : </label>
-				<input id="aviso_tags" type="text"  ng-model="aviso.tags" ></input>
+				<label> Visible : </label><BR>
+				<input id="aviso_checkBox_visible" type="checkbox" ng-model="aviso.visible" ></input><BR>
 				
-				<label> Visible : </label>
-				<input id="aviso_checkBox_visible" type="checkbox" ng-model="aviso.visible" ></input>
-				
-				<label> Sensible : </label>
-				<input id="aviso_checkBox_sensible" type="checkbox" ng-model="aviso.sensible" ></input>
+				<label> Sensible : </label><BR>
+				<input id="aviso_checkBox_sensible" type="checkbox" ng-model="aviso.sensible" ></input><BR>
 			</div>
 				
-			
-		</div>	
-		<div id="fotos_div" class="col-md-12">
-			<div class="col-md-4">
-					<div class="col-md-12">
-						<input type="file" ng-model="image_name" fileread="uploadme" />
-					</div>
-					<div class="col-md-3" class="col-md-12">
+			<div class="col-md-12 fotos_div">
+				<div class="col-md-12">
 						
-						<label> Image preview </label>
-						<img src="{{uploadme}}" width="200" height="150" ></img>
+						<div class="col-md-12 image_div_preview" >
+							<label> Image preview </label><BR>
+							<img image_div_preview ng-show="uploadme" src="{{uploadme}}" width="290" height="160" ></img>
+							
+						</div><BR>
+						<div class="col-md-12"><BR>
+						   
+						</div>
+						<div class="col-md-12 inputWrapper">
+						   <input class="fileInput btn-primary" type="file" onchange="angular.element(this).scope().setFile(this)" fileread="uploadme" > <font size="6px" color="white"><b>Foto...</b></font></input>
+						</div>
 						
-										
-					</div>
-					<div class="col-md-12">
-						<p ng-show="result_upload" ><font color="red">{{ result_upload }}</font> </p>
-						<button ng-click="uploadImage()">Upload images</button>
-					</div>
-			</div>
-			
-			<div class="col-md-12">
-					<label> Subir a servidor : </label]><BR>
-					<button id="RUN" name="mis_fotos" ng-click="subir_informacion()" >Subir</button><BR>
+				</div><BR>
+				<div class="col-md-12">
+					<p ng-show="result_upload" ><font color="red">{{ result_upload }}</font> </p>
+					<p ng-show="result_upload" ><font color="red">{{ result_photo_upload }}</font> </p>
+				</div>
+				<div class="col-md-12 spacing">
+				</div>
+				<div class="col-md-12">
+					<button id="subir_boton" class="btn-success" id="RUN" name="mis_fotos" ng-click="subir_informacion()" ><font size="6px" color="white"><b>CREAR</b></font></button><BR>
+				</div>
 			</div>
 		</div>
-		
 		
 	</body>	
 	

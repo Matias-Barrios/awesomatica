@@ -13,12 +13,6 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 	var object={
 		src : ''
 	};
-	
-	 $scope.setFile = function(element) {
-        $scope.$apply(function($scope) {
-            $scope.theFile = element.files[0];
-        });
-    };
 	$scope.aviso.images.push(object);
 		
 	$scope.subir_informacion = function() {
@@ -50,9 +44,6 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		post_data.api_password = $scope.api_password_input;
 		post_data.file_name = $scope.file_name_input;
 		post_data.file_content = $scope.aviso;
-		$scope.aviso.images[0].src = "images/" + $scope.theFile.name;
-		return;
-		uploadImage();
 		$http({
 							method: 'POST',
 							url: 'http://45.33.116.147:3000/put_aviso',
@@ -79,13 +70,11 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
     $scope.uploadImage = function() {
 	  $scope.result_upload = "";
       var fd = new FormData();
-	 
       var imgBlob = dataURItoBlob($scope.uploadme);
-      fd.append('file', imgBlob, $scope.theFile.name);
-	  
+      fd.append('file', imgBlob);
       $http.post(
           'http://45.33.116.147:4000/upload_aviso',
-		  fd, {
+          fd, {
             transformRequest: angular.identity,
             headers: {
               'Content-Type': undefined
@@ -93,10 +82,10 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
           }
         )
         .success(function(response) {
-          $scope.result_photo_upload = "Photo Successfully uploaded"
+          $scope.result_upload = "Successfully uploaded"
         })
         .error(function(response) {
-          $scope.result_photo_upload = "Error uploading picture : " + JSON.stringify(response)
+          $scope.result_upload = "Error uploading picture : " + response
         });
     }
 
@@ -126,7 +115,7 @@ main_app.directive("fileread", [
       },
       link: function(scope, element, attributes) {
         element.bind("change", function(changeEvent) {
-		console.log("element : " + JSON.stringify(element));
+			
           var reader = new FileReader();
 		  reader.onload = function(loadEvent) {
             scope.$apply(function() {
