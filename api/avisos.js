@@ -19,7 +19,7 @@ var PORT = 3000;
 
 // Functions 
 function Get_Avisos(callback){
-	const testFolder = './avisos_json/';
+	const testFolder = '/data/avisos_json/';
 	const fs = require('fs');
 	var results = [];
 	var errors = "";
@@ -35,7 +35,7 @@ function Get_Avisos(callback){
 	callback(results,errors);
  }
 function Put_aviso(data,callback){
-	const testFolder = './avisos_json/';
+	const testFolder = '/data/avisos_json/';
 	const fs = require('fs');
 	var results = "OK";
 	var errors = "";
