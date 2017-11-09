@@ -6,8 +6,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 
 var PASSWORD;
-
-fs.readFile('/etc/api_password.txt', 'utf8', function(err, data) {  
+const fileSys = require('fs');
+fileSys.readFile('/etc/api_password.txt', 'utf8', function(err, data) {  
     if (err) throw err;
 		PASSWORD = data.trim();
 		
