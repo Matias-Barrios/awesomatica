@@ -32,7 +32,7 @@
                  return;
             }
              res.json({error_code:0,err_desc:null});
-        })<br />
+        });
     });
     app.listen(PORT, function(){
         console.log('Application running on ' + PORT + '...');
