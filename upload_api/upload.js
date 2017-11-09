@@ -26,7 +26,8 @@
                 }).single('file');
     /** API path that will upload the files */
     app.post('/upload_aviso', function(req, res) {
-        upload(req,res,function(err){
+        console.log("Got a request : " +  req.url + " File : " + req.file.originalname );
+	upload(req,res,function(err){
             if(err){
                 res.header('Access-Control-Allow-Origin', '*');
     	    	res.header('Access-Control-Allow-Methods', '*');
