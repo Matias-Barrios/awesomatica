@@ -49,12 +49,11 @@
 				
 				<label> Tags : </label><BR>
 				<input maxlength="500" size="38" size="38"id="aviso_tags" type="text"  ng-model="aviso.tags" ></input><BR>
-				
-				<label> Visible : </label><BR>
-				<input id="aviso_checkBox_visible" type="checkbox" ng-model="aviso.visible" ></input><BR>
-				
-				<label> Sensible : </label><BR>
-				<input id="aviso_checkBox_sensible" type="checkbox" ng-model="aviso.sensible" ></input><BR>
+				<BR>
+				<BR>				
+				<input id="aviso_checkBox_visible" type="checkbox" ng-model="aviso.visible" >Visible</input><BR>
+				<input id="aviso_checkBox_sensible" type="checkbox" ng-model="aviso.sensible" >Sensible</input><BR>
+				<input id="aviso_checkBox_comercial" type="checkbox" ng-model="aviso.comercial" >Comercial</input><BR>
 			</div>
 				
 			<div class="col-md-12 fotos_div">
@@ -80,7 +79,7 @@
 				<div class="col-md-12 spacing">
 				</div>
 				<div class="col-md-12">
-					<button id="subir_boton" class="btn-success" id="RUN" name="mis_fotos" ng-click="subir_informacion()" ><font size="6px" color="white"><b>CREAR</b></font></button><BR>
+					<button id="subir_boton" class="btn-success" name="mis_fotos" ng-click="subir_informacion()" ><font size="6px" color="white"><b>CREAR</b></font></button><BR>
 				</div>
 			</div>
 		</div>

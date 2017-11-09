@@ -42,7 +42,7 @@ body {
 
 .info_div {
 	width : 365px;
-	height : 560px;
+	height : 610px;
 	border-radius : 20px;
 	border-style : solid;
 	border-color : #4ca6ff;
@@ -90,7 +90,7 @@ body {
 }
 
 #subir_boton {
-	width : 365px;
+	width : 330px;
 	height : 60px;
 }
 

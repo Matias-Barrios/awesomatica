@@ -10,6 +10,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 	$scope.aviso.images = [];
 	$scope.aviso.visible = false;
 	$scope.aviso.sensible = false;
+	$scope.aviso.comercial = true;
 	var object={
 		src : ''
 	};
