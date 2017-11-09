@@ -25,7 +25,7 @@
                     storage: storage
                 }).single('file');
     /** API path that will upload the files */
-    app.post('/upload', function(req, res) {
+    app.post('/upload_aviso', function(req, res) {
         upload(req,res,function(err){
             if(err){
                  res.json({error_code:1,err_desc:err});
