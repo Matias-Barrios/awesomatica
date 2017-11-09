@@ -23,13 +23,17 @@
     });
     var upload = multer({ //multer settings
                     storage: storage
-                }).single('file');
+                }).single('*');
     /** API path that will upload the files */
     app.post('/upload_aviso', function(req, res) {
         upload(req,res,function(err){
             if(err){
-                 res.json({error_code:1,err_desc:err});
-                 return;
+                res.header('Access-Control-Allow-Origin', '*');
+    	    	res.header('Access-Control-Allow-Methods', '*');
+    	    	res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+		        res.header('Content-Type', 'text/html'); 
+		        res.status(500).json({error_code:1,err_desc:err});
+                return;
             }
              res.json({error_code:0,err_desc:null});
         });
