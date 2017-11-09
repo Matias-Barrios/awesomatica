@@ -34,6 +34,13 @@
              res.json({error_code:0,err_desc:null});
         });
     });
+
+    app.options('*', function(req, res) {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Methods', '*');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+        res.status(200).send("you cant just reply anything...thats where u are wrong kiddo!");
+    }); 
     app.listen(PORT, function(){
         console.log('Application running on ' + PORT + '...');
     });
