@@ -5,6 +5,15 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 
+var PASSWORD;
+
+fs.readFile('/etc/api_password.txt', 'utf8', function(err, data) {  
+    if (err) throw err;
+		PASSWORD = data;
+		
+});
+
+
 // Constants
 var PORT = 3000;
 
@@ -67,7 +76,7 @@ app.get('/get_avisos', function (req, res) {
 
 // POST Methdods
 app.post('/put_aviso', function (req, res) {
-  if ( req.body.api_password == "shellbomb" ) {
+  if ( req.body.api_password == PASSWORD ) {
 	 
 	  Put_aviso( req.body, function (results,errors){
 		  if(errors) {
