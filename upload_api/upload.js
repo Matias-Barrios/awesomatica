@@ -23,7 +23,7 @@
     });
     var upload = multer({ //multer settings
                     storage: storage
-                }).single('*');
+                }).single('file');
     /** API path that will upload the files */
     app.post('/upload_aviso', function(req, res) {
         upload(req,res,function(err){
