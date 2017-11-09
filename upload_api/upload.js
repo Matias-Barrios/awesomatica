@@ -18,7 +18,7 @@
         },
         filename: function (req, file, cb) {
             var datetimestamp = Date.now();
-            cb(null, "foto_avisos_" +  path.extname(file.originalname))
+            cb(null, "foto_avisos_" +  file.originalname)
         }
     });
     var upload = multer({ //multer settings
