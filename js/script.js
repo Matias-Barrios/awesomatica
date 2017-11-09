@@ -75,7 +75,7 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','ngMate
 			
 								
 						}, function errorCallback(err) {
-								$scope.error_on_view = "Errors occurred : " + err;
+								$scope.error_on_view = "Errors occurred : " + JSON.stringify(err);
 						});
 		}
 		
