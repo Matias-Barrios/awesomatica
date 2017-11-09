@@ -52,8 +52,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		post_data.file_name = $scope.file_name_input;
 		post_data.file_content = $scope.aviso;
 		$scope.aviso.images[0].src = "images/" + $scope.theFile.name;
-		return;
-		uploadImage();
+		$scope.uploadImage();
 		$http({
 							method: 'POST',
 							url: 'http://45.33.116.147:3000/put_aviso',
