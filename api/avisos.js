@@ -9,7 +9,7 @@ var PASSWORD;
 
 fs.readFile('/etc/api_password.txt', 'utf8', function(err, data) {  
     if (err) throw err;
-		PASSWORD = data;
+		PASSWORD = data.trim();
 		
 });
 
