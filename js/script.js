@@ -1,4 +1,4 @@
-var main_app = angular.module('main_app',['ngTable','LocalStorageModule','ngMaterial','jkAngularCarousel']);
+var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
   	
 	main_app.config(function (localStorageServiceProvider,$httpProvider) {
 			localStorageServiceProvider
@@ -27,6 +27,12 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','ngMate
 	
 	
 	main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','localStorageService','$location','$filter', function($scope,$http,NgTableParams,localStorageService,$location,$filter) {
+		//Global variables 
+		
+		$scope.fatal_error = false;
+		$scope.activar_navegacion = false;
+		
+		// END GLOBAL VARIABLES
 		
 		
 		$scope.get_avisos = function(){
