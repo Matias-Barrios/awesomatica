@@ -1,17 +1,35 @@
+html > * {
+	max-width: 100%;
+	max-width : 500px;
+	
+}
+html > div {
+	text-align: center;
+}
+body > div {
+	text-align: center;
+}
 html, body {
     height: 100%;
 }
 
+div {
+	text-align: left;
+}
+
 html {
     display: table;
-    margin: auto;
+    margin: 0%;
 }
 
 body {
-	width : 365px;
-    display: table-cell;
-    vertical-align: middle;
-	
+	position:absolute;
+	width : 90%;
+	display:table-cell;
+	margin-left:auto;
+    margin-right:auto;
+	vertical-align:middle;
+	background-color : #b7ffba !important;
 }
 .header_div {
 	text-align : center;
@@ -22,27 +40,32 @@ body {
 .fotos_div {
 	margin : 0px;
 	padding : 0px;
-	width : 365px;
-	height : 300px;
+	width : 90%;
+	height : 25%;
 	border-radius : 20px;
 	border-style : solid;
 	border-color : #4d4cff;
 	background-color : #99ccff;
 	display: inline-block;
 }
+.image_preview {
+	width : 100%;
+	height : 80%;
+}
 .image_div_preview {
-	width : 330px;
-	height : 200px;
+	width : 100%;
+	height : 50%;
 	border-radius : 20px;
 	border-style : solid;
 	border-color : #468c00;
 	background-color : #dfffbf;
 	display: inline-block;
+	padding : 5%;
 }
 
 .info_div {
-	width : 365px;
-	height : 610px;
+	width : 90%;
+	height : 60%;
 	border-radius : 20px;
 	border-style : solid;
 	border-color : #4ca6ff;
@@ -51,53 +74,60 @@ body {
 }
 
 .inputWrapper {
-    height: 32px;
-    width: 64px;
     overflow: hidden;
     position: relative;
     cursor: pointer;
-    /*Using a background color, but you can use a background image to represent a button*/
-    background-color: #DDF;
-	background-color : #00b3b2;
+    background-color : #00b3b2;
 	border-style : solid;
 	border-color : #006666;
 	border-radius : 20px;
-	width : 330px;
-	height : 50px;
+	width:100%;
+	min-width : 200px;
+	height : 15%;
 	display: table-cell;
     vertical-align: middle;
-	horizontal-align: middle;
+	
 }
 .fileInput {
     cursor: pointer;
     height: 100%;
+	width : 100%;
+	min-width : 200px;
     position:absolute;
     top: 0;
     right: 0;
     z-index: 99;
     /*This makes the button huge. If you want a bigger button, increase the font size*/
-    font-size:100px;
+    font-size:24%;
     /*Opacity settings for all browsers*/
     opacity: 0;
     -moz-opacity: 0;
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
 	
 }
-
+.input_aviso {
+	width : 100%;
+	
+}
 .spacing {
-	height : 100px;
-	width : 300px;
+	height : 20%;
+	width : 100%;
 }
 
 #subir_boton {
-	width : 330px;
-	height : 60px;
+	width : 100%;
+	height : 24%;
 }
 
 #main_div {
-    width : 365px;
+    width : 100%;
 	vertical-align: middle;
 }
+#aviso_description {
+	width : 100%;
+	height : 20%;
+}
+
 
 
 

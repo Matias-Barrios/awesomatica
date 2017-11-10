@@ -1,6 +1,9 @@
 <!DOCTYPE html>
  <html ng-app="main_app" ng-controller="main_controller">
     <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="HandheldFriendly" content="true">
 	<head>
 	  <title>Upload Aviso</title>
       <link rel="icon" href="favicon_looking_glass.png">
@@ -30,25 +33,26 @@
 			</div>
 			<div class="col-md-12 info_div">
 				<label> API Password : </label><BR>
-				<input maxlength="15" size="38" id="api_password" type="text" ng-model="api_password_input"></input><BR>
-				<label> File Name : </label><BR>
-				<input maxlength="38" size="38" id="file_name" type="text" ng-model="file_name_input"></input><BR>
-				
+				<input maxlength="15"  class="input_aviso" id="api_password" type="text" ng-model="api_password_input"></input><BR>
+								
 				<BR>
 				<label> Nombre : </label><BR>
-				<input maxlength="38" size="38" id="aviso_name" type="text" ng-model="aviso.name" ></input><BR>
+				<input maxlength="38" class="input_aviso" id="aviso_name" type="text" ng-model="aviso.name" ></input><BR>
 				
 				<label> Direccion : </label><BR>
-				<input maxlength="38" size="38" id="aviso_description" type="text"  ng-model="aviso.address" ></input><BR>
+				<input  maxlength="38" class="input_aviso" id="aviso_direccion" type="text"  ng-model="aviso.address" ></input><BR>
 				
 				<label> Telefonos (separados por ";") : </label><BR>
-				<input maxlength="38" size="38" id="aviso_description" type="text"  ng-model="phones_input" ></input><BR>
+				<input  maxlength="38" class="input_aviso" id="aviso_telefonos" type="text"  ng-model="phones_input" ></input><BR>
+				
+				<label> Horarios : </label><BR>
+				<input  maxlength="100" class="input_aviso" id="aviso_horarios" type="text"  ng-model="aviso.horarios" ></input><BR>
 				
 				<label> Descripcion : </label><BR>
-				<textarea id="aviso_description"  cols="40" rows="5" ng-model="aviso.description" ></textarea><BR>
+				<textarea id="aviso_description"   ng-model="aviso.description" ></textarea><BR>
 				
 				<label> Tags : </label><BR>
-				<input maxlength="500" size="38" size="38"id="aviso_tags" type="text"  ng-model="aviso.tags" ></input><BR>
+				<input maxlength="500" class="input_aviso" id="aviso_tags" type="text"  ng-model="aviso.tags" ></input><BR>
 				<BR>
 				<BR>				
 				<input id="aviso_checkBox_visible" type="checkbox" ng-model="aviso.visible" >Visible</input><BR>
@@ -60,15 +64,15 @@
 				<div class="col-md-12">
 						
 						<div class="col-md-12 image_div_preview" >
-							<label> Image preview </label><BR>
-							<img image_div_preview ng-show="uploadme" src="{{uploadme}}" width="290" height="160" ></img>
+							<label> Previsualizacion :  </label><BR>
+							<img class="image_preview" ng-show="uploadme" src="{{uploadme}}"></img>
 							
 						</div><BR>
 						<div class="col-md-12"><BR>
 						   
 						</div>
-						<div class="col-md-12 inputWrapper">
-						   <input class="fileInput btn-primary" type="file" onchange="angular.element(this).scope().setFile(this)" fileread="uploadme" > <font size="6px" color="white"><b>Foto...</b></font></input>
+						<div class="inputWrapper">
+						   <input class="fileInput btn-primary" type="file" onchange="angular.element(this).scope().setFile(this)" fileread="uploadme" > <font color="white"><b>Foto...</b></font></input>
 						</div>
 						
 				</div><BR>
@@ -80,7 +84,7 @@
 					<p ng-show="result_upload" ><font color="red">{{ result_photo_upload }}</font> </p>
 				</div>
 				<div class="col-md-12">
-					<button id="subir_boton" class="btn-success" name="mis_fotos" ng-click="subir_informacion()" ><font size="6px" color="white"><b>CREAR</b></font></button><BR>
+					<button id="subir_boton" class="btn-success" name="mis_fotos" ng-click="subir_informacion()" ><font  color="white"><b>CREAR</b></font></button><BR>
 				</div>
 			</div>
 		</div>

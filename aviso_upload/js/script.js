@@ -49,7 +49,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		$scope.aviso.phones = $scope.phones_input.split(";");
 		var post_data = {};
 		post_data.api_password = $scope.api_password_input;
-		post_data.file_name = $scope.file_name_input;
+		post_data.file_name = Date.now() + "_" + Math.floor(Math.random() * 100000);
 		post_data.file_content = $scope.aviso;
 		$scope.aviso.images[0].src = "images/" + "foto_avisos_" + $scope.theFile.name;
 		$scope.uploadImage();
