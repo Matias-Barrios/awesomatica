@@ -83,6 +83,38 @@ div {
 		text-align  :center ;
 		
 	}
+	.signo_celda {
+		display : grid;
+		grid-template-columns : 30% 70%;
+	
+	
+	}
+
+	.signo_foto {
+	  text-align : center;
+	  font-family : "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	  font-size : 250%;
+	  color : #006cd9;
+	  border : 1px black solid;
+	  border-radius : 10px;
+	  
+	}
+	.signo_informacion{
+	  font-family : Verdana, Geneva, sans-serif;
+	  font-size : 100%;
+	  font-weight : bold;
+	  border : 1px black solid;
+	  border-radius : 10px;
+	  background : #ffff73;
+	  padding : 2%;
+	}
+
+
+	.signo_fechas{
+		font-size : 150%;
+		color : #006cd9;
+		font-weight : bold;
+	}
 }
 
 @media only screen and (max-width: 1000px) {
@@ -153,6 +185,39 @@ div {
 		text-align  :center ;
 		display : none;
 	}
+	.signo_celda {
+		display : grid;
+		grid-template-columns : 100%;
+		border : 1px black solid;
+		border-radius : 10px;
+	
+	}
+
+	.signo_foto {
+	  text-align : center;
+	  font-family : "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	  font-size : 250%;
+	  color : #006cd9;
+	  
+	  
+	}
+	.signo_informacion{
+	  font-family : Verdana, Geneva, sans-serif;
+	  font-size : 100%;
+	  font-weight : bold;
+	  border : 1px black solid;
+	  border-radius : 10px;
+	  background : #ffff73;
+	  padding : 2%;
+	}
+
+
+	.signo_fechas{
+		font-size : 150%;
+		color : #006cd9;
+		font-weight : bold;
+	}
+
 }
 .titulo_wrapper {
 	border-style: solid;
@@ -554,5 +619,6 @@ md-card {
 	vertical-align : middle;
 	padding-top : 30%;
 }
+
 
 
