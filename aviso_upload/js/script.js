@@ -72,7 +72,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 							}, function errorCallback(err) {
 										// called asynchronously if an error occurs
 									// or server returns response with an error status.
-									$scope.result_upload = "Error : " + JSON.stringify(err);									
+									$scope.result_upload = "Error : " + JSON.stringify(err.data);									
 									
 							});
 		
