@@ -79,7 +79,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 	}
 
     $scope.uploadImage = function() {
-	  $scope.result_upload = "";
+	  
       var fd = new FormData();
 	 
       var imgBlob = dataURItoBlob($scope.uploadme);
