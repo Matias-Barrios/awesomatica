@@ -3,6 +3,14 @@
     var app = express(); 
     var bodyParser = require('body-parser');
     var multer = require('multer');
+    var PASSWORD;
+    const fileSys = require('fs');
+    fileSys.readFile('/etc/api_password.txt', 'utf8', function(err, data) {  
+     if (err) throw err;
+		PASSWORD = data.trim();
+		
+    });
+
     app.use(function(req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -27,7 +35,7 @@
                 }).single('file');
     /** API path that will upload the files */
     app.post('/upload_aviso', function(req, res) {
-      
+      if ( req.body.api_password == PASSWORD == PASSWORD) {
 		upload(req,res,function(err){
 		    if(err){
 			res.header('Access-Control-Allow-Origin', '*');
@@ -39,13 +47,21 @@
 		    }
 		     res.json({error_code:0,err_desc:null});
 		});
+    } else {
+	    		res.header('Access-Control-Allow-Origin', '*');
+			res.header('Access-Control-Allow-Methods', '*');
+			res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+			res.header('Content-Type', 'text/html'); 
+			res.status(500).json("You are not authorized!!");
+			return;
+	     }
 	});
 
     app.options('*', function(req, res) {
         res.header('Access-Control-Allow-Origin', '*');
         res.header('Access-Control-Allow-Methods', '*');
         res.header('Access-Control-Allow-Headers', 'Content-Type');
-        res.status(200).send("you cant just reply anything...thats where u are wrong kiddo!");
+        res.status(200).send("OK");
     }); 
     app.listen(PORT, function(){
         console.log('Application running on ' + PORT + '...');
