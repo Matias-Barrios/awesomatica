@@ -31,6 +31,19 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 		
 		$scope.fatal_error = false;
 		$scope.activar_navegacion = false;
+		$scope.show_main = true;
+		$scope.show_horoscopo = false;
+		$scope.show_historia = false;
+		
+		var signos = [
+		{
+			nombre : "ARIES",
+			imagen : "images/h_aries.png",
+			fechas : "del 12 de oct al 54 de abr",
+			informacion : "bla blah bla blahbla blahbla blahbla blahbla blahbla blahbla blahbla blahbla blahbla blah"
+		}
+		
+		];
 		
 		// END GLOBAL VARIABLES
 		
@@ -83,9 +96,37 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 								$scope.fatal_error = true;
 						});
 		}
+		$scope.get_horoscopo = function(){
+			$scope.tableParams_horoscopo = new NgTableParams({
+										count: 12								
+									},{ counts: [],
+										dataset: signos});
+		}
 		
+		
+		$scope.hide_all = function(){
+			$scope.show_main = false;
+			$scope.show_horoscopo = false;
+			$scope.show_historia = false;
+			$scope.activar_navegacion = false;
+			
+		}
+		$scope.display_horoscopo = function(){
+			$scope.hide_all();
+			$scope.show_horoscopo = true;
+		}
+		$scope.display_main = function(){
+			$scope.hide_all();
+			$scope.show_main = true;
+		}
+		$scope.display_historia = function(){
+			$scope.hide_all();
+			$scope.show_historia = true;
+		}
+		//RUN ONCE
 		$scope.get_avisos();
-		
+		$scope.get_horoscopo();
+		//$scope.display_horoscopo();
 			
 	}]); 
 	
