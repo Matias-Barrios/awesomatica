@@ -50,7 +50,7 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 							$scope.tableParams = new NgTableParams({
 									count: 5								
 								},{
-								
+									counts: [],
 									getData: function(params) {
 										
 										 // organize filter as $filter understand it (graph object)
