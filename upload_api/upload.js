@@ -35,8 +35,7 @@
                 }).single('file');
     /** API path that will upload the files */
     app.post('/upload_aviso', function(req, res) {
-      console.log("req.body.api_password : " + req.body.api_password);
-      if ( req.body.api_password == PASSWORD) {
+    
 		upload(req,res,function(err){
 		    if(err){
 			res.header('Access-Control-Allow-Origin', '*');
@@ -48,14 +47,7 @@
 		    }
 		     res.json({error_code:0,err_desc:null});
 		});
-    } else {
-	    		res.header('Access-Control-Allow-Origin', '*');
-			res.header('Access-Control-Allow-Methods', '*');
-			res.header('Access-Control-Allow-Headers', 'Content-Type'); 
-			res.header('Content-Type', 'text/html'); 
-			res.status(500).end('You are not authorized to do this!!');
-			return;
-	     }
+   
 	});
 
     app.options('*', function(req, res) {
