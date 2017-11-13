@@ -35,7 +35,8 @@
                 }).single('file');
     /** API path that will upload the files */
     app.post('/upload_aviso', function(req, res) {
-      if ( req.body.api_password == PASSWORD == PASSWORD) {
+      console.log("req.body.api_password");
+      if ( req.body.api_password == PASSWORD) {
 		upload(req,res,function(err){
 		    if(err){
 			res.header('Access-Control-Allow-Origin', '*');
