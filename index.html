@@ -53,7 +53,6 @@
 			
 			<div class="encabezado_anuncios" >
 				<p><h4 id="texto_guia_de_lugares" >Guía de lugares</h4></p>
-				<p ng-show="error_on_view" ><font color="red">{{ error_on_view }}</font></p>
 				<p ng-show="total_number_of_avisos != 0" > <b> Viendo <font color="#006cd9"> {{ number_of_filtered_results }}</font> de <font color="#006cd9"> {{ total_number_of_avisos }}</font> </b></p>
 			</div>
 			<table id="main_table" ng-table="tableParams" template-pagination="custom/pager" class="table table-condensed table-bordered table-striped" show-filter="true" export-csv='csv'  >
@@ -84,7 +83,10 @@
 			</table>
 		
 	  </div>
-	
+	<div class="fatal_error" ng-show="fatal_error">
+		<p> Se ha producido un error. Vuelve a intentarlo mas tarde.</p>
+		<p ng-show="error_on_view" ><font color="red">{{ error_on_view }}</font></p>
+	</div>
 	<div id="main_footer" >
 		<div id="main_footer_text" >
 			<p> 2017 - Todos los derechos reservados, Gabriel Matias Barrios Cabrera</p>

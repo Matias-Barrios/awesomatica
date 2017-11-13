@@ -9,6 +9,7 @@ html > div {
 
 
 
+
 div {
 	text-align: left;
 }
@@ -541,6 +542,17 @@ md-card {
   text-decoration: none;
 }
 
-
+.fatal_error{
+	border : 1px;
+	border-radius : 15px;
+	background-color : #d9d900;
+	text-align : center;
+	height : 100%;
+	width : 100%;
+	font-size : 200%;
+	min-height : 500px;
+	vertical-align : middle;
+	padding-top : 30%;
+}
 
 
