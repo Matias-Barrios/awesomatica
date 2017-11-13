@@ -26,6 +26,7 @@ function Get_Avisos(callback){
 	try {
 	fs.readdirSync(testFolder).forEach(file => {
 		var obj = JSON.parse(fs.readFileSync(testFolder + file,"utf8"));
+		obj.id = file;
 		if (obj.visible == true )
 			results.push(obj);
 		});
