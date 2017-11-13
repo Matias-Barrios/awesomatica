@@ -54,7 +54,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		post_data.file_name = Date.now() + "_" + Math.floor(Math.random() * 100000);
 		post_data.file_content = $scope.aviso;
 		$scope.aviso.images[0].src = "images/" + "foto_avisos_" + $scope.theFile.name;
-		$scope.uploadImage();
+		
 		$http({
 							method: 'POST',
 							url: 'http://45.33.116.147:3000/put_aviso',
@@ -68,7 +68,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 									// this callback will be called asynchronously
 									// when the response is available
 									 $scope.result_upload = "Success!!";																				
-									
+									 $scope.uploadImage();
 							}, function errorCallback(err) {
 										// called asynchronously if an error occurs
 									// or server returns response with an error status.
