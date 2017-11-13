@@ -11,6 +11,8 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 	$scope.aviso.visible = false;
 	$scope.aviso.sensible = false;
 	$scope.aviso.comercial = true;
+	$scope.aviso.tags = "";
+	
 	var object={
 		src : ''
 	};
@@ -27,7 +29,6 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		/* EJEMPLO DE POST REQUEST
 		{
 			"api_password" : "shellbomb",
-			"file_name" : "ojitos",
 			"file_content" : {
 				  "images": [
 					{
@@ -47,6 +48,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 			}
 		*/
 		$scope.aviso.phones = $scope.phones_input.split(";");
+		$scope.aviso.tags = $scope.aviso.tags + " " + $scope.aviso.name + " " + $scope.aviso.description + " " +  $scope.aviso.address
 		var post_data = {};
 		post_data.api_password = $scope.api_password_input;
 		post_data.file_name = Date.now() + "_" + Math.floor(Math.random() * 100000);
@@ -70,7 +72,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 							}, function errorCallback(err) {
 										// called asynchronously if an error occurs
 									// or server returns response with an error status.
-									$scope.result_upload = "Error : " + err;									
+									$scope.result_upload = "Error : " + JSON.stringify(err);									
 									
 							});
 		
@@ -86,10 +88,15 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
       $http.post(
           'http://45.33.116.147:4000/upload_aviso',
 		  fd, {
+			
             transformRequest: angular.identity,
             headers: {
               'Content-Type': undefined
-            }
+            },
+			data : {
+				api_password : $scope.api_password_input
+			}
+			
           }
         )
         .success(function(response) {
