@@ -228,6 +228,9 @@ div {
     border-top-right-radius: 1em;
 	padding : 0%;
 }
+.titulo_wrapper > span {
+	text-align : right;
+}
 #main_div {
 	width : 95%;
 	height : 80%;
@@ -384,6 +387,15 @@ span + span {
    font-family : "Impact", Charcoal, sans-serif;
    font-size: 160%;
    color : #0f0f1e;
+   width : 80%;
+   display : inline;
+   
+}
+.id_json{
+	width : 20%;
+	display : inline;
+	text-align : right;
+	margin-left: 60%;
 }
 .application_text{
    font-family : "Impact", Charcoal, sans-serif;
