@@ -35,7 +35,7 @@
                 }).single('file');
     /** API path that will upload the files */
     app.post('/upload_aviso', function(req, res) {
-      console.log("req.body.api_password");
+      console.log("req.body.api_password : " + req.body.api_password);
       if ( req.body.api_password == PASSWORD) {
 		upload(req,res,function(err){
 		    if(err){
