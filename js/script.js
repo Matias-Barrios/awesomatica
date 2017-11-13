@@ -44,8 +44,6 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 						url: 'http://45.33.116.147:3000/get_avisos' 
 						}).then(function successCallback(response) {
 							$scope.api_response = response.data;
-							console.log("response.data : " + response.data);
-							console.log("response.data[0].name : " + response.data[0].name);
 							$scope.total_number_of_avisos = response.data.length; 							
 							$scope.tableParams = new NgTableParams({
 									count: 5								
@@ -70,7 +68,7 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 											})
 										var theData = angular.copy($scope.api_response);
 										var filteredData = params.filter() ? $filter('filter')(theData, filters) : theData;
-										console.log("filteredData " + filteredData);
+										
 										orderedData = $filter('orderBy')(filteredData, params.orderBy());
 										$scope.table_filtered_and_ordered_data = orderedData;
 										$scope.number_of_filtered_results = filteredData.length;
@@ -81,7 +79,8 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 			
 								
 						}, function errorCallback(err) {
-								$scope.error_on_view = "Errors occurred : " + JSON.stringify(err);
+								$scope.error_on_view = "Errors occurred : " + JSON.stringify(err.data);
+								$scope.fatal_error = true;
 						});
 		}
 		
