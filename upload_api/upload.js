@@ -52,7 +52,7 @@
 			res.header('Access-Control-Allow-Methods', '*');
 			res.header('Access-Control-Allow-Headers', 'Content-Type'); 
 			res.header('Content-Type', 'text/html'); 
-			res.status(500).json("You are not authorized!!");
+			res.status(500).end('You are not authorized to do this!!');
 			return;
 	     }
 	});
