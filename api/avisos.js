@@ -63,7 +63,7 @@ function Crear_horoscopo(data,callback){
 		return;
 	   }
 	try {
-		fs.writeFileSync(testFolder + "/horoscopo.json", JSON.stringify(data.signos));
+		fs.writeFileSync(testFolder + "horoscopo.json", JSON.stringify(data.signos));
 	} catch (err) {
 		console.log(err);
 		callback(results,err);
