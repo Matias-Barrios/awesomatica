@@ -53,12 +53,61 @@ function Put_aviso(data,callback){
 	}
 	callback(results,errors);
  }
+function Crear_horoscopo(data,callback){
+	const testFolder = '/data/horoscopo/';
+	const fs = require('fs');
+	var results = "OK";
+	var errors = "";
+	if (! data.signos ) {
+		callback("","Signos is empty!!");
+		return;
+	   }
+	try {
+		fs.writeFileSync(testFolder + "/horoscopo.json", JSON.stringify(data.signos));
+	} catch (err) {
+		console.log(err);
+		callback(results,err);
+	}
+	callback(results,errors);
+ }
+function Get_Horoscopo(callback){
+	const testFolder = '/data/horoscopo/';
+	const fs = require('fs');
+	var results = [];
+	var errors = "";
+	try {
+		callback(JSON.parse(fs.readFileSync('/data/horoscopo/horoscopo.json',"utf8")),"");
+	
+	} catch (err) {
+		console.log(err);
+		callback("",err);
+	}
+	callback(results,errors);
+ }
 // END Functions
 
 
 // GET Methdods
 app.get('/get_avisos', function (req, res) {
   Get_Avisos( function (results,errors){
+	  if(errors) {
+		res.header('Access-Control-Allow-Origin', '*');
+    		res.header('Access-Control-Allow-Methods', '*');
+    		res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+		res.header('Content-Type', 'text/html'); 
+		res.status(500).end('Something weird happened!! : ' + errors);
+	  } else {
+		res.header('Access-Control-Allow-Origin', '*');
+    		res.header('Access-Control-Allow-Methods', '*');
+    		res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+		res.header('Content-Type', 'application/json'); 
+		res.status(200).end(JSON.stringify(results));
+	  }
+  });
+  
+});
+app.get('/get_horoscopo', function (req, res) {
+  Get_Horoscopo( function (results,errors){
 	  if(errors) {
 		res.header('Access-Control-Allow-Origin', '*');
     		res.header('Access-Control-Allow-Methods', '*');
@@ -103,6 +152,33 @@ app.post('/put_aviso', function (req, res) {
 			res.status(500).end('You are not authorized to do this!!');
   }
 });
+app.post('/crear_horoscopo', function (req, res) {
+  if ( req.body.api_password == PASSWORD ) {
+	 
+	  Crear_horoscopo( req.body, function (results,errors){
+		  if(errors) {
+			res.header('Access-Control-Allow-Origin', '*');
+			res.header('Access-Control-Allow-Methods', '*');
+			res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+			res.header('Content-Type', 'text/html'); 
+			res.status(500).end('Something weird happened!! : ' + errors);
+		  } else {
+			res.header('Access-Control-Allow-Origin', '*');
+			res.header('Access-Control-Allow-Methods', '*');
+			res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+			res.header('Content-Type', 'text/html'); 
+			res.status(200).end("Successfully uploaded file");
+		  }
+	  });
+  }else {
+  			res.header('Access-Control-Allow-Origin', '*');
+			res.header('Access-Control-Allow-Methods', '*');
+			res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+			res.header('Content-Type', 'text/html'); 
+			res.status(500).end('You are not authorized to do this!!');
+  }
+});
+
 
 
 //Enable CORS
