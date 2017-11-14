@@ -158,6 +158,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 	
 		
 	$scope.subir_informacion = function() {
+		$scope.result_upload = "";
 		var post_data = {};
 		post_data.api_password = $scope.api_password_input;
 		post_data.signos = $scope.signos;

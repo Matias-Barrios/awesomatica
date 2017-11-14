@@ -7,6 +7,22 @@ html > div {
 	text-align: left;
 }
 
+.signo_detalles {
+	font-size : 85%;
+	color : #313140;
+}
+.signo_app_detalle {
+	font-size : 90%;
+	color : #265cff;
+}
+.signo_informacion_div {
+	width : 100%;
+	padding: 2%;
+	height : 100%;
+	font-family : "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-weight : bold;
+	font-size : 110%;
+}
 
 .identificador_de_aviso{
 	background-color: #c7edf1 ;

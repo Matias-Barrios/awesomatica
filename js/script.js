@@ -35,23 +35,13 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 		$scope.show_horoscopo = false;
 		$scope.show_historia = false;
 		
-		var signos = [
-		{
-			nombre : "ARIES",
-			imagen : "images/h_aries.png",
-			fechas : "del 12 de oct al 54 de abr",
-			informacion : "bla blah bla blahbla blahbla blahbla blahbla blahbla blahbla blahbla blahbla blahbla blah"
-		}
 		
-		];
 		
 		// END GLOBAL VARIABLES
 		
 		
 		$scope.get_avisos = function(){
-			$scope.api_response = {};
-			$scope.total_number_of_avisos = 0; 	
-			$scope.error_on_view = "";			
+						
 			$http({
 						method: 'GET',
 						url: 'http://45.33.116.147:3000/get_avisos' 
@@ -97,10 +87,24 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 						});
 		}
 		$scope.get_horoscopo = function(){
-			$scope.tableParams_horoscopo = new NgTableParams({
+			$http({
+						method: 'GET',
+						url: 'http://45.33.116.147:3000/get_horoscopo' 
+						}).then(function successCallback(response) {
+							var signos = response.data;
+							$scope.tableParams_horoscopo = new NgTableParams({
 										count: 12								
 									},{ counts: [],
-										dataset: signos});
+										dataset: signos});					
+							
+			
+								
+						}, function errorCallback(err) {
+								$scope.error_on_view = "Errors occurred : " + JSON.stringify(err.data);
+								$scope.fatal_error = true;
+								$scope.display_main();
+						});
+			
 		}
 		
 		
