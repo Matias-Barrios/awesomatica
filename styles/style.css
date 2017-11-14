@@ -8,7 +8,16 @@ html > div {
 }
 
 
+.identificador_de_aviso{
+	background-color: #c7edf1 ;
+	border-bottom-left-radius: 15px ;
+	border-bottom-right-radius: 15px ;
+}
 
+.identificador_de_aviso > span {
+	margin-left: 2% ;
+	
+}
 
 div {
 	text-align: left;
