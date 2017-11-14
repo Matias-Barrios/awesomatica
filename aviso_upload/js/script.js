@@ -1,4 +1,4 @@
-var main_app = angular.module('main_app',['ngTable','LocalStorageModule','ngMaterial','jkAngularCarousel']);
+var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 
 
 
