@@ -40,6 +40,7 @@
     storage: storage,
     fileFilter: function (req, file, callback) {
         if( req.body.api_password != PASSWORD ) {
+	    console.log (Date.now() + " - " + req.connection.remoteAddress + " - " + "Unauthorized attempt!" );
             return callback(new Error('Unauthorized!'))
         }   
         callback(null, true)
