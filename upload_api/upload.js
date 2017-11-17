@@ -39,7 +39,7 @@
 		console.log("Pass : " +  req.body.api_password);
 		 if (req.body.api_password != PASSWORD) {
 		 
-		  	return cb(null, false, new Error('Unauthorized!'));
+		  	cb(null, false, new Error('Unauthorized!'));
 		 }
 		 cb(null, true);
 		}
