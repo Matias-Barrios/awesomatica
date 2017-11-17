@@ -32,8 +32,8 @@
 	///-------------------------
 	fileFilter: function (req, file, cb) {
 
-						//console.log(req);
-			    if ( req.body.contrasena == PASSWORD ) {
+			console.log(req.body.api_password);			
+			    if ( req.body.api_password == PASSWORD ) {
 						cb(null, true);
 			    } else {
 				return cb(null, false);
