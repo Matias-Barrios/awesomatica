@@ -35,7 +35,7 @@
     });
 
 
-   var fileFilter: function (req, file, cb) {
+   var fileFilter =  function (req, file, cb) {
 		console.log("Pass : " +  req.body.api_password);
 		 if (req.body.api_password != PASSWORD) {
 		 
