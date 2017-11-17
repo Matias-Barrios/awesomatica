@@ -40,7 +40,11 @@
     storage: storage,
     fileFilter: function (req, file, callback) {
         if( req.body.api_password != PASSWORD ) {
-	    console.log (Date.now() + " - " + req.connection.remoteAddress + " - " + "Unauthorized attempt!" );
+	var ip = req.headers['x-forwarded-for'] || 
+    	    req.connection.remoteAddress || 
+	    req.socket.remoteAddress ||
+    	    (req.connection.socket ? req.connection.socket.remoteAddress : null);
+	    console.log (Date.now() + " - " + String(ip) + " - " + "Unauthorized attempt!" );
             return callback(new Error('Unauthorized!'))
         }   
         callback(null, true)
