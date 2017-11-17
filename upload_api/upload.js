@@ -28,8 +28,27 @@
             var datetimestamp = Date.now();
 		console.log("File name : " + JSON.stringify(file));
             cb(null, "foto_avisos_" +  file.originalname)
-        }
+        },
+	///-------------------------
+	fileFilter: function (req, file, cb) {
+
+						//console.log(req);
+			    if ( req.body.contrasena == PASSWORD ) {
+						cb(null, true);
+			    } else {
+				return cb(null, false);
+			    }
+			}
+
+
+
+
+	////---------------------------------    
+	        
+	    
     });
+
+
     var upload = multer({ //multer settings
                     storage: storage
                 }).single('file');
