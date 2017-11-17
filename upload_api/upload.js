@@ -31,14 +31,14 @@
         },
 	///-------------------------
 	fileFilter: function (req, file, cb) {
-
-			console.log(req.body.api_password);			
-			    if ( req.body.api_password == PASSWORD ) {
-						cb(null, true);
-			    } else {
-				return cb(null, false);
-			    }
-			}
+		console.log("Pass : " +  req.body.api_password);
+		 if (req.body.api_password != PASSWORD) {
+		 
+		  	return cb(null, false, new Error('Unauthorized!'));
+		 }
+		 cb(null, true);
+		}
+	}
 
 
 
