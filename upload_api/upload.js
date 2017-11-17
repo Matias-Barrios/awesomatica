@@ -29,8 +29,13 @@
 		console.log("File name : " + JSON.stringify(file));
             cb(null, "foto_avisos_" +  file.originalname)
         },
-	///-------------------------
-	fileFilter: function (req, file, cb) {
+	  
+	        
+	    
+    });
+
+
+   var fileFilter: function (req, file, cb) {
 		console.log("Pass : " +  req.body.api_password);
 		 if (req.body.api_password != PASSWORD) {
 		 
@@ -43,14 +48,11 @@
 
 
 
-	////---------------------------------    
-	        
-	    
-    });
 
 
     var upload = multer({ //multer settings
-                    storage: storage
+                    storage: storage,
+	    	    fileFilter: fileFilter
                 }).single('file');
     /** API path that will upload the files */
     app.post('/upload_aviso', function(req, res) {
