@@ -54,7 +54,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		post_data.file_name = Date.now() + "_" + Math.floor(Math.random() * 100000);
 		post_data.file_content = $scope.aviso;
 		$scope.aviso.images[0].src = "images/" + "foto_avisos_" + $scope.theFile.name;
-		
+		 $scope.uploadImage();
 		$http({
 							method: 'POST',
 							url: 'http://45.33.116.147:3000/put_aviso',
@@ -68,7 +68,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 									// this callback will be called asynchronously
 									// when the response is available
 									 $scope.result_upload = "Success!!";																				
-									 $scope.uploadImage();
+									
 							}, function errorCallback(err) {
 										// called asynchronously if an error occurs
 									// or server returns response with an error status.
@@ -81,9 +81,11 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
     $scope.uploadImage = function() {
 	  
       var fd = new FormData();
-	 
-      var imgBlob = dataURItoBlob($scope.uploadme);
+	  var imgBlob = dataURItoBlob($scope.uploadme);
+     
+	  fd.append('api_password',$scope.api_password_input);
       fd.append('file', imgBlob, $scope.theFile.name);
+	   
 	  
       $http.post(
           'http://45.33.116.147:4000/upload_aviso',
@@ -92,10 +94,8 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
             transformRequest: angular.identity,
             headers: {
               'Content-Type': undefined
-            },
-			data : {
-				api_password : $scope.api_password_input
-			}
+            }
+			
 			
           }
         )
@@ -106,7 +106,8 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
           $scope.result_photo_upload = "Error uploading picture : " + JSON.stringify(response)
         });
     }
-
+	  //the save method
+   
 
     //you need this function to convert the dataURI
     function dataURItoBlob(dataURI) {
