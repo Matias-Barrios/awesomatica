@@ -35,25 +35,19 @@
     });
 
 
-   var fileFilter =  function (req, file, cb) {
-		console.log("Pass : " +  req.body.api_password);
-		 if (req.body.api_password != PASSWORD) {
-		 
-		  	cb(null, false, new Error('Unauthorized!'));
-		 }
-		 cb(null, true);
-		}
-	
-
-
-
-
-
-
-    var upload = multer({ //multer settings
-                    storage: storage,
-	    	    fileFilter: fileFilter
-                }).single('file');
+ 
+  var upload = multer({ //multer settings
+    storage: storage,
+    fileFilter: function (req, file, callback) {
+        if( req.body.api_password != PASSWORD ) {
+            return callback(new Error('Unauthorized!'))
+        }   
+        callback(null, true)
+    },
+    limits:{
+        fileSize: 5000 * 5000
+    }
+	}).single('file');
     /** API path that will upload the files */
     app.post('/upload_aviso', function(req, res) {
     	
