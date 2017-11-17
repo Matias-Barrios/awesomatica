@@ -657,5 +657,73 @@ md-card {
 	padding-top : 30%;
 }
 
+.trabajo_ofrecido_titulo {
+	width : 60%;
+	border : 1px #006619  solid;
+	border-radius : 15px;
+	background-image: linear-gradient(#0086b3, #2693ff 40%, #4c79ff);
+	color : white;
+	font-weight : bold;
+	font-size : 140%;
+	padding :10px;
+	text-align  :center;
+	margin : auto;
+	
+}
+
+.main_div_trabajo_ofrecido {
+	text-align : center ;
+	padding : 1%;
+	margin-top : 1%;
+}
+
+.trabajo_ofrecido_subtitulo {
+	width : 100%;
+	border : 1px #006619  solid;
+	background-image: linear-gradient(#0086b3, #2693ff 40%, #4c79ff);
+	color : white;
+	font-weight : bold;
+	font-size : 100%;
+	padding :10px;
+	text-align  :center;
+	
+}
+
+.t_ofrecido_informacion {
+	width : 100%;
+	border : 1px #00468c solid;
+	background-image: linear-gradient(#bfffff, #bfdfff 40%, #bfffdf);
+}
+
+.application_text_t_ofrecidos {
+	font-weight : bold;
+	color : #20202f;
+	
+}
+
+.t_ofrecido_en_celda {
+	text-align : center;
+}
+
+.titulo_wrapper_t_ofrecido{
+	border-top-right-radius : 20px;
+	border-top-left-radius : 20px;
+	background-image: linear-gradient(#4ca6ff, #2693ff 40%, #0080ff);
+	
+	
+}
+
+.titulo_t_ofrecidos {
+	padding :1%;
+	color : white;
+	font-weight : bold;
+	font-family : Georgia, serif;
+	font-size : 200%;
+	margin-left : 1%;
+}
 
 
+ng-table-sort-header{
+  background-image: linear-gradient(#00698c, #0080ff 40%, #006cd9);
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}

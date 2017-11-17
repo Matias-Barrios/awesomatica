@@ -33,7 +33,7 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 		$scope.activar_navegacion = false;
 		$scope.show_main = true;
 		$scope.show_horoscopo = false;
-		$scope.show_historia = false;
+		$scope.show_trabajo_ofrecido = false;
 		
 		
 		
@@ -106,16 +106,52 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 						});
 			
 		}
+		$scope.get_trabajos_ofrecidos = function(){
+			var t_ofrecidos = [{
+				titulo : "Pintor",
+				nombre : "Pepperino Pommoro",
+				telefonos :["093521432","099788877"],
+				descripcion : "Trabajos en pintureria, vapaii",
+				tags : "Pintor pintor pintura"
+				
+			}];
+			$scope.tableParams_trabajos_ofrecidos = new NgTableParams({
+										count: 10								
+									},{ counts: [],
+										dataset: t_ofrecidos});	
+			
+			/*$http({
+						method: 'GET',
+						url: 'http://45.33.116.147:3000/get_horoscopo' 
+						}).then(function successCallback(response) {
+							var signos = response.data;
+							$scope.tableParams_horoscopo = new NgTableParams({
+										count: 12								
+									},{ counts: [],
+										dataset: signos});					
+							
+			
+								
+						}, function errorCallback(err) {
+								$scope.error_on_view = "Errors occurred : " + JSON.stringify(err.data);
+								$scope.fatal_error = true;
+								$scope.display_main();
+						});
+			*/
+			
+		}
+		
 		
 		
 		$scope.hide_all = function(){
 			$scope.show_main = false;
 			$scope.show_horoscopo = false;
-			$scope.show_historia = false;
+			$scope.show_trabajo_ofrecido = false;
 			$scope.activar_navegacion = false;
 			
 		}
 		$scope.display_horoscopo = function(){
+			$scope.get_horoscopo();
 			$scope.hide_all();
 			$scope.show_horoscopo = true;
 		}
@@ -123,14 +159,17 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 			$scope.hide_all();
 			$scope.show_main = true;
 		}
-		$scope.display_historia = function(){
+		$scope.display_trabajo_ofrecido = function(){
+			$scope.get_trabajos_ofrecidos();
 			$scope.hide_all();
-			$scope.show_historia = true;
+			$scope.show_trabajo_ofrecido = true;
 		}
 		//RUN ONCE
 		$scope.get_avisos();
-		$scope.get_horoscopo();
-		//$scope.display_horoscopo();
+		$scope.display_main();
+		
+		
+		
 			
 	}]); 
 	
