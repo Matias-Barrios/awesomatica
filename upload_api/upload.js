@@ -56,7 +56,7 @@
     app.post('/upload_aviso', function(req, res) {
     	
 		upload(req,res,function(err){
-		    console.log("API_password : " + JSON.stringify(req.body));
+		   
 		    if(err){
 			res.header('Access-Control-Allow-Origin', '*');
 			res.header('Access-Control-Allow-Methods', '*');
