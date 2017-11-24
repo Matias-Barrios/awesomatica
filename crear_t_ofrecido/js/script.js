@@ -49,7 +49,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 			}
 		*/
 		$scope.t_ofrecido.phones = $scope.phones_input.split(";");
-		$scope.t_ofrecido.tags = $scope.t_ofrecido.tags + " " + $scope.t_ofrecido.nombre + " " + $scope.t_ofrecido.descripcion + " " +  $scope.t_ofrecido.address
+		$scope.t_ofrecido.tags = $scope.t_ofrecido.titulo + " " + $scope.t_ofrecido.tags + " " + $scope.t_ofrecido.nombre + " " + $scope.t_ofrecido.descripcion + " " +  $scope.t_ofrecido.address
 		var post_data = {};
 		post_data.api_password = $scope.api_password_input;
 		post_data.file_name = Date.now() + "_" + Math.floor(Math.random() * 100000);
