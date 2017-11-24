@@ -140,6 +140,20 @@ div {
 		color : #006cd9;
 		font-weight : bold;
 	}
+	.info_y_foto_perfil {
+	display : grid;
+	grid-template-columns : 3fr 7fr;
+	}
+
+	.t_ofrecido_foto {
+		padding:1px;
+		overflow: hidden;
+		border : 1px solid black;
+	}
+	.t_ofrecido_imagen_statica {
+		width : 100%;
+		height : 100%;
+	}
 }
 
 @media only screen and (max-width: 1000px) {
@@ -241,6 +255,20 @@ div {
 		font-size : 150%;
 		color : #006cd9;
 		font-weight : bold;
+	}
+	.info_y_foto_perfil {
+	display : grid;
+	grid-template-columns : 1fr;
+	}
+
+	.t_ofrecido_foto {
+		padding:1px;
+		overflow: hidden;
+		border : 1px solid black;
+	}
+	.t_ofrecido_imagen_statica {
+		width : 100%;
+		height : 100%;
 	}
 
 }
@@ -398,7 +426,7 @@ div {
 	
 }
 span + span {
-    margin-left: 15px;
+    margin-left: 25px;
 }
 .separador_telefonos {
 	width : 20%;
@@ -727,3 +755,12 @@ ng-table-sort-header{
   background-image: linear-gradient(#00698c, #0080ff 40%, #006cd9);
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
 }
+
+.pagination_container {
+	text-align: center;
+}
+
+.pagination_border {
+	border : 1px solid #313140;
+}
+

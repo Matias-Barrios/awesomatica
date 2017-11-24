@@ -41,7 +41,7 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 		
 		
 		$scope.get_avisos = function(){
-						
+			
 			$http({
 						method: 'GET',
 						url: 'http://45.33.116.147:3000/get_avisos' 
@@ -87,6 +87,7 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 						});
 		}
 		$scope.get_horoscopo = function(){
+			
 			$http({
 						method: 'GET',
 						url: 'http://45.33.116.147:3000/get_horoscopo' 
@@ -107,37 +108,50 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 			
 		}
 		$scope.get_trabajos_ofrecidos = function(){
-			var t_ofrecidos = [{
-				titulo : "Pintor",
-				nombre : "Pepperino Pommoro",
-				telefonos :["093521432","099788877"],
-				descripcion : "Trabajos en pintureria, vapaii",
-				tags : "Pintor pintor pintura"
-				
-			}];
-			$scope.tableParams_trabajos_ofrecidos = new NgTableParams({
-										count: 10								
-									},{ counts: [],
-										dataset: t_ofrecidos});	
 			
-			/*$http({
+			$http({
 						method: 'GET',
-						url: 'http://45.33.116.147:3000/get_horoscopo' 
+						url: 'http://45.33.116.147:3000/get_t_ofrecido' 
 						}).then(function successCallback(response) {
-							var signos = response.data;
-							$scope.tableParams_horoscopo = new NgTableParams({
-										count: 12								
-									},{ counts: [],
-										dataset: signos});					
-							
+							$scope.api_response_t_ofrecido = response.data;
+							$scope.total_number_of_t_ofrecidos = response.data.length; 							
+							$scope.tableParams_trabajos_ofrecidos = new NgTableParams({
+									count: 5								
+								},{
+									counts: [],
+									getData: function(params) {
+										
+										 // organize filter as $filter understand it (graph object)
+											var filters = {};
+											angular.forEach(params.filter(), function(val,key){
+												var filter = filters;
+												var parts = key.split('.');
+												for (var i=0;i<parts.length;i++){
+													if (i!=parts.length-1) {
+														filter[parts[i]] = {};
+														filter = filter[parts[i]];
+													}
+													else {
+														filter[parts[i]] = val;
+													}
+												}
+											})
+										var theData = angular.copy($scope.api_response_t_ofrecido);
+										var filteredData = params.filter() ? $filter('filter')(theData, filters) : theData;
+										
+										orderedData = $filter('orderBy')(filteredData, params.orderBy());
+										$scope.table_filtered_and_ordered_data_t_ofrecidos = orderedData;
+										$scope.number_of_filtered_results_t_ofrecidos = filteredData.length;
+										params.total($scope.table_filtered_and_ordered_data_t_ofrecidos.length);
+										return orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());;
+									}
+								});
 			
 								
 						}, function errorCallback(err) {
 								$scope.error_on_view = "Errors occurred : " + JSON.stringify(err.data);
 								$scope.fatal_error = true;
-								$scope.display_main();
 						});
-			*/
 			
 		}
 		
