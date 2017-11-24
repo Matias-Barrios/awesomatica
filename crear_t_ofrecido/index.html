@@ -28,8 +28,11 @@
 				<input maxlength="15"  class="input_aviso" id="api_password" type="text" ng-model="api_password_input"></input><BR>
 								
 				<BR>
+				<label> Titulo : </label><BR>
+				<input maxlength="38" class="input_aviso" id="aviso_titulo" type="text" ng-model="t_ofrecido.titulo" ></input><BR>
+				
 				<label> Nombre : </label><BR>
-				<input maxlength="38" class="input_aviso" id="aviso_name" type="text" ng-model="t_ofrecido.name" ></input><BR>
+				<input maxlength="38" class="input_aviso" id="aviso_name" type="text" ng-model="t_ofrecido.nombre" ></input><BR>
 				
 				<label> Direccion : </label><BR>
 				<input  maxlength="38" class="input_aviso" id="aviso_direccion" type="text"  ng-model="t_ofrecido.address" ></input><BR>
@@ -38,7 +41,7 @@
 				<input  maxlength="38" class="input_aviso" id="aviso_telefonos" type="text"  ng-model="phones_input" ></input><BR>
 				
 				<label> Descripcion : </label><BR>
-				<textarea id="aviso_description"   ng-model="t_ofrecido.description" ></textarea><BR>
+				<textarea id="aviso_description"   ng-model="t_ofrecido.descripcion" ></textarea><BR>
 				
 				<label> Tags : </label><BR>
 				<input maxlength="1000" class="input_aviso" id="aviso_tags" type="text"  ng-model="t_ofrecido.tags" ></input><BR>
