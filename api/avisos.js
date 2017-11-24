@@ -36,8 +36,43 @@ function Get_Avisos(callback){
 	}
 	callback(results,errors);
  }
+function Get_t_ofrecidos(callback){
+	const testFolder = '/data/t_ofrecido/';
+	const fs = require('fs');
+	var results = [];
+	var errors = "";
+	try {
+	fs.readdirSync(testFolder).forEach(file => {
+		var obj = JSON.parse(fs.readFileSync(testFolder + file,"utf8"));
+		obj.id = file;
+		if (obj.visible == true )
+			results.push(obj);
+		});
+	} catch (err) {
+		console.log(err);
+		callback(results,err);
+	}
+	callback(results,errors);
+ }
 function Put_aviso(data,callback){
 	const testFolder = '/data/avisos_json/';
+	const fs = require('fs');
+	var results = "OK";
+	var errors = "";
+	if (! data.file_name || ! data.file_content ) {
+		callback("","You did not specify a name for the file or there is no content");
+		return;
+	   }
+	try {
+		fs.writeFileSync(testFolder + "/" + data.file_name + ".json", JSON.stringify(data.file_content));
+	} catch (err) {
+		console.log(err);
+		callback(results,err);
+	}
+	callback(results,errors);
+ }
+function Put_t_ofrecido(data,callback){
+	const testFolder = '/data/t_ofrecido';
 	const fs = require('fs');
 	var results = "OK";
 	var errors = "";
@@ -70,6 +105,7 @@ function Crear_horoscopo(data,callback){
 	}
 	callback(results,errors);
  }
+
 function Get_Horoscopo(callback){
 	const testFolder = '/data/horoscopo/';
 	const fs = require('fs');
@@ -90,6 +126,24 @@ function Get_Horoscopo(callback){
 // GET Methdods
 app.get('/get_avisos', function (req, res) {
   Get_Avisos( function (results,errors){
+	  if(errors) {
+		res.header('Access-Control-Allow-Origin', '*');
+    		res.header('Access-Control-Allow-Methods', '*');
+    		res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+		res.header('Content-Type', 'text/html'); 
+		res.status(500).end('Something weird happened!! : ' + errors);
+	  } else {
+		res.header('Access-Control-Allow-Origin', '*');
+    		res.header('Access-Control-Allow-Methods', '*');
+    		res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+		res.header('Content-Type', 'application/json'); 
+		res.status(200).end(JSON.stringify(results));
+	  }
+  });
+  
+});
+app.get('/get_t_ofrecido', function (req, res) {
+  Get_t_ofrecidos( function (results,errors){
 	  if(errors) {
 		res.header('Access-Control-Allow-Origin', '*');
     		res.header('Access-Control-Allow-Methods', '*');
@@ -179,6 +233,32 @@ app.post('/crear_horoscopo', function (req, res) {
   }
 });
 
+app.post('/crear_t_ofrecido', function (req, res) {
+  if ( req.body.api_password == PASSWORD ) {
+	 
+	  Crear_horoscopo( req.body, function (results,errors){
+		  if(errors) {
+			res.header('Access-Control-Allow-Origin', '*');
+			res.header('Access-Control-Allow-Methods', '*');
+			res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+			res.header('Content-Type', 'text/html'); 
+			res.status(500).end('Something weird happened!! : ' + errors);
+		  } else {
+			res.header('Access-Control-Allow-Origin', '*');
+			res.header('Access-Control-Allow-Methods', '*');
+			res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+			res.header('Content-Type', 'text/html'); 
+			res.status(200).end("Successfully uploaded file");
+		  }
+	  });
+  }else {
+  			res.header('Access-Control-Allow-Origin', '*');
+			res.header('Access-Control-Allow-Methods', '*');
+			res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+			res.header('Content-Type', 'text/html'); 
+			res.status(500).end('You are not authorized to do this!!');
+  }
+});
 
 
 //Enable CORS
