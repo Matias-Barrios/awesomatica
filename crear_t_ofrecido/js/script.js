@@ -5,166 +5,59 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','localStorageService','$location','$filter', function($scope,$http,NgTableParams,localStorageService,$location,$filter) {
 		
 		
-	$scope.signos = [
-		{
-			nombre : "ACUARIO",
-			elemento : "Aire",
-			color : "Celeste, Plateado",
-			dia : "Sabado",
-			gobernado : "Urano, Saturno",
-			compatibilidad : "Leo, Sagitario",
-			numeros_suerte : "4, 7, 11, 22, 29",
-			imagen : "images/h_acuario.png",
-			fechas : "20 de Enero al 18 de Febrero",
-			informacion : ""
-		},
-		{
-			nombre : "PISCIS",
-			elemento : "Agua",
-			color : "Malva, Lila, Purpura, Violeta, Verde Agua",
-			dia : "Jueves",
-			gobernado : "Neptuno, Jupiter",
-			compatibilidad : "Virgo, Tauro",
-			numeros_suerte : "3, 9, 12, 15, 18, 24",
-			imagen : "images/h_piscis.png",
-			fechas : "19 de Febrero al 20 de Marzo",
-			informacion : ""
-		},
-		{
-			nombre : "ARIES",
-			elemento : "Fuego",
-			color : "Rojo",
-			dia : "Martes",
-			gobernado : "Marte",
-			compatibilidad : "Libra, Leo",
-			numeros_suerte : "1, 8, 17",
-			imagen : "images/h_aries.png",
-			fechas : "21 de Marzo al 19 de Abril",
-			informacion : ""
-		},
-		{
-			nombre : "TAURO",
-			elemento : "Tierra",
-			color : "Verde, Rosado",
-			dia : "Viernes, Lunes",
-			gobernado : "Venus",
-			compatibilidad : "Escorpio, Cancer",
-			numeros_suerte : "2, 6, 9, 12, 24",
-			imagen : "images/h_tauro.png",
-			fechas : "20 de Abril al 20 de Mayo",
-			informacion : ""
-		},
-		{
-			nombre : "GEMINIS",
-			elemento : "Aire",
-			color : "Verde Claro, Amarillo",
-			dia : "Miercoles",
-			gobernado : "Mercurio",
-			compatibilidad : "Sagitario, Acuario",
-			numeros_suerte : "5, 7, 14, 23",
-			imagen : "images/h_geminis.png",
-			fechas : "21 de Mayo al 20 de Junio",
-			informacion : ""
-		},
-		{
-			nombre : "CANCER",
-			elemento : "Agua",
-			color : "Blanco",
-			dia : "Lunes, Jueves",
-			gobernado : "Luna",
-			compatibilidad : "Capricornio, Tauro",
-			numeros_suerte : "2, 3, 15, 20",
-			imagen : "images/h_cancer.png",
-			fechas : "21 de Junio al 22 de Julio",
-			informacion : ""
-		},
-		{
-			nombre : "LEO",
-			elemento : "Fuego",
-			color : "Dorado, Amarillo, Naranja",
-			dia : "Domingo",
-			gobernado : "Sol",
-			compatibilidad : "Acuario, Geminis",
-			numeros_suerte : "1, 3, 10, 19",
-			imagen : "images/h_leon.png",
-			fechas : "23 de Julio al 22 de Agosto",
-			informacion : ""
-		},
-		{
-			nombre : "VIRGO",
-			elemento : "Tierra",
-			color : "Gris, Beige, Amarillo Palido",
-			dia : "Miercoles",
-			gobernado : "Mercurio",
-			compatibilidad : "Piscis, Cancer",
-			numeros_suerte : "5, 14, 15, 23, 32",
-			imagen : "images/h_virgo.png",
-			fechas : "23 de Agosto al 22 de Septiembre",
-			informacion : ""
-		},
-		{
-			nombre : "LIBRA",
-			elemento : "Aire",
-			color : "Rosado, Verde",
-			dia : "Viernes",
-			gobernado : "Venus",
-			compatibilidad : "Aries, Sagitario",
-			numeros_suerte : "4, 6, 13, 15, 24",
-			imagen : "images/h_libra.png",
-			fechas : "23 de Septiembre al 22 de Octubre",
-			informacion : ""
-		},
-		{
-			nombre : "ESCORPIO",
-			elemento : "Agua",
-			color : "Escarlata, Rojo, Oxido",
-			dia : "Martes",
-			gobernado : "Pluton, Marte",
-			compatibilidad : "Tauro, Cancer",
-			numeros_suerte : "8, 11, 18, 22",
-			imagen : "images/h_escorpio.png",
-			fechas : "23 de Octubre al 21 de Noviembre",
-			informacion : ""
-		},
-		{
-			nombre : "SAGITARIO",
-			elemento : "Fuego",
-			color : "Azul",
-			dia : "Jueves",
-			gobernado : "Jupiter",
-			compatibilidad : "Geminis, Aries",
-			numeros_suerte : "3, 7, 9, 12, 21",
-			imagen : "images/h_sagitario.png",
-			fechas : "22 de Noviembre al 21 de Diciembre",
-			informacion : ""
-		},
-		{
-			nombre : "CAPRICORNIO",
-			elemento : "Tierra",
-			color : "Marron, Negro",
-			dia : "Sabado",
-			gobernado : "Saturno",
-			compatibilidad : "Tauro, Cancer",
-			numeros_suerte : "4, 8, 13, 22",
-			imagen : "images/h_capricornio.png",
-			fechas : "22 de Diciembre al 19 de Enero",
-			informacion : ""
-		}
-		
-		
-	];
+    $scope.uploadme;
+	$scope.t_ofrecido={};
+	$scope.t_ofrecido.images = [];
+	$scope.t_ofrecido.visible = false;
+	$scope.t_ofrecido.sensible = false;
+	$scope.t_ofrecido.comercial = true;
+	$scope.t_ofrecido.tags = "";
 	
+	var object={
+		src : ''
+	};
 	
-	
+	 $scope.setFile = function(element) {
+        $scope.$apply(function($scope) {
+            $scope.theFile = element.files[0];
+        });
+    };
+	$scope.t_ofrecido.images.push(object);
 		
 	$scope.subir_informacion = function() {
-		$scope.result_upload = "";
+		 $scope.result_upload = "";
+		/* EJEMPLO DE POST REQUEST
+		{
+			"api_password" : "shellbomb",
+			"file_content" : {
+				  "images": [
+					{
+					  "src": ""
+					}
+				  ],
+				  "visible": true,
+				  "sensible": false,
+				  "name": "Ferreteria Venus",
+				  "address": "Teniente Galeano 2358",
+				  "description": "Una ferreteria re pipi cucu",
+				  "tags": "ferreteria barraca reparacion tornillos",
+				  "phones": [
+					"22271616"
+				  ]
+				}
+			}
+		*/
+		$scope.t_ofrecido.phones = $scope.phones_input.split(";");
+		$scope.t_ofrecido.tags = $scope.t_ofrecido.tags + " " + $scope.t_ofrecido.name + " " + $scope.t_ofrecido.description + " " +  $scope.t_ofrecido.address
 		var post_data = {};
 		post_data.api_password = $scope.api_password_input;
-		post_data.signos = $scope.signos;
+		post_data.file_name = Date.now() + "_" + Math.floor(Math.random() * 100000);
+		post_data.file_content = $scope.t_ofrecido;
+		$scope.t_ofrecido.images[0].src = "images/" + "t_ofrecido_" + $scope.theFile.name;
+		$scope.uploadImage();
 		$http({
 							method: 'POST',
-							url: 'http://45.33.116.147:3000/crear_horoscopo',
+							url: 'http://45.33.116.147:3000/crear_t_ofrecido',
 							headers: {
 							   'Content-Type': 'application/json'
 							},
@@ -175,7 +68,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 									// this callback will be called asynchronously
 									// when the response is available
 									 $scope.result_upload = "Success!!";																				
-									 
+									
 							}, function errorCallback(err) {
 										// called asynchronously if an error occurs
 									// or server returns response with an error status.
@@ -185,10 +78,76 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		
 	}
 
-  			
+    $scope.uploadImage = function() {
+	  
+      var fd = new FormData();
+	  var imgBlob = dataURItoBlob($scope.uploadme);
+     
+	  fd.append('api_password',$scope.api_password_input);
+      fd.append('file', imgBlob, $scope.theFile.name);
+	   
+	  
+      $http.post(
+          'http://45.33.116.147:4000/upload_aviso',
+		  fd, {
+			
+            transformRequest: angular.identity,
+            headers: {
+              'Content-Type': undefined
+            }
+			
+			
+          }
+        )
+        .success(function(response) {
+          $scope.result_photo_upload = "Photo Successfully uploaded"
+        })
+        .error(function(response) {
+          $scope.result_photo_upload = "Error uploading picture : " + JSON.stringify(response)
+        });
+    }
+	  //the save method
+   
+
+    //you need this function to convert the dataURI
+    function dataURItoBlob(dataURI) {
+      var binary = atob(dataURI.split(',')[1]);
+      var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+      var array = [];
+      for (var i = 0; i < binary.length; i++) {
+        array.push(binary.charCodeAt(i));
+      }
+      return new Blob([new Uint8Array(array)], {
+        type: mimeString
+      });
+    }
+	
+			
 	}]);
 
-
+	//your directive
+main_app.directive("fileread", [
+  function() {
+    return {
+      scope: {
+        fileread: "="
+      },
+      link: function(scope, element, attributes) {
+        element.bind("change", function(changeEvent) {
+		console.log("element : " + JSON.stringify(element));
+          var reader = new FileReader();
+		  reader.onload = function(loadEvent) {
+            scope.$apply(function() {
+              scope.fileread = loadEvent.target.result;
+            });
+          }
+          reader.readAsDataURL(changeEvent.target.files[0]);
+        });
+      }
+    }
+  }
+]);
+	
 	
   
   

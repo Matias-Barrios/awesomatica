@@ -14,8 +14,9 @@
 	  
 	  <script src="js/angular.min.js"></script>
 	  <script src="js/ng-table.min.js"></script>
-      <script src="js/angular-local-storage.min.js"></script>
-	  <script src="js/script.js"></script>
+          <script src="js/angular-local-storage.min.js"></script>
+	  
+	 <script src="js/script.js"></script>
     </head>
 	<body>
 		<div id="main_div" class ="col-md-2 ">
@@ -27,26 +28,52 @@
 				<input maxlength="15"  class="input_aviso" id="api_password" type="text" ng-model="api_password_input"></input><BR>
 								
 				<BR>
-				
 				<label> Nombre : </label><BR>
-				<input type="text" class="signo_informacion"   ng-model="t_ofrecido.nombre" ></textarea><BR>
+				<input maxlength="38" class="input_aviso" id="aviso_name" type="text" ng-model="t_ofrecido.name" ></input><BR>
 				
-				<label> Teléfonos : </label><BR>
-				<input type="text" class="signo_informacion"   ng-model="input_telefonos" ></textarea><BR>
+				<label> Direccion : </label><BR>
+				<input  maxlength="38" class="input_aviso" id="aviso_direccion" type="text"  ng-model="t_ofrecido.address" ></input><BR>
 				
-				<label> Descripción : </label><BR>
-				<textarea class="signo_informacion"   ng-model="t_ofrecido.description" ></textarea><BR>
+				<label> Telefonos (separados por ";") : </label><BR>
+				<input  maxlength="38" class="input_aviso" id="aviso_telefonos" type="text"  ng-model="phones_input" ></input><BR>
+				
+				<label> Descripcion : </label><BR>
+				<textarea id="aviso_description"   ng-model="t_ofrecido.description" ></textarea><BR>
+				
+				<label> Tags : </label><BR>
+				<input maxlength="1000" class="input_aviso" id="aviso_tags" type="text"  ng-model="t_ofrecido.tags" ></input><BR>
 				<BR>
 				<BR>				
-				
+				<input id="aviso_checkBox_visible" type="checkbox" ng-model="t_ofrecido.visible" >Visible</input><BR>
+				<input id="aviso_checkBox_sensible" type="checkbox" ng-model="t_ofrecido.sensible" >Sensible</input><BR>
+				<input id="aviso_checkBox_comercial" type="checkbox" ng-model="t_ofrecido.comercial" >Comercial</input><BR>
 			</div>
 				
-				<div class="error_upload">
-					<p ng-show="result_upload" ><font color="red">{{ result_upload }}</font> </p>
-					
+			<div class="col-md-12 fotos_div">
+				<div class="col-md-12">
+						
+						<div class="col-md-12 image_div_preview" >
+							<label> Previsualizacion :  </label><BR>
+							<img class="image_preview" ng-show="uploadme" src="{{uploadme}}"></img>
+							
+						</div><BR>
+						<div class="col-md-12"><BR>
+						   
+						</div>
+						<div class="inputWrapper">
+						   <input class="fileInput btn-primary" type="file" onchange="angular.element(this).scope().setFile(this)" fileread="uploadme" > <font color="white"><b>Foto...</b></font></input>
+						</div>
+						
+				</div><BR>
+				
+				<div class="col-md-12 spacing">
 				</div>
-				<div class="button_horoscopo">
-					<button id="subir_boton" class="btn-success" ng-click="subir_informacion()" ><font  color="white"><b>CREAR</b></font></button><BR>
+				<div class="col-md-12">
+					<p ng-show="result_upload" ><font color="red">{{ result_upload }}</font> </p>
+					<p ng-show="result_upload" ><font color="red">{{ result_photo_upload }}</font> </p>
+				</div>
+				<div class="col-md-12">
+					<button id="subir_boton" class="btn-success" name="mis_fotos" ng-click="subir_informacion()" ><font  color="white"><b>CREAR</b></font></button><BR>
 				</div>
 			</div>
 		</div>
