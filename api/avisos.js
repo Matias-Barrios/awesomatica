@@ -236,7 +236,7 @@ app.post('/crear_horoscopo', function (req, res) {
 app.post('/crear_t_ofrecido', function (req, res) {
   if ( req.body.api_password == PASSWORD ) {
 	 
-	  Crear_horoscopo( req.body, function (results,errors){
+	  Put_t_ofrecido( req.body, function (results,errors){
 		  if(errors) {
 			res.header('Access-Control-Allow-Origin', '*');
 			res.header('Access-Control-Allow-Methods', '*');
