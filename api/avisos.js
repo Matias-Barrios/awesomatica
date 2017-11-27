@@ -36,6 +36,24 @@ function Get_Avisos(callback){
 	}
 	callback(results,errors);
  }
+
+function Get_Aviso(aviso,callback){
+	const testFolder = '/data/avisos_json/';
+	const fs = require('fs');
+	var results = [];
+	var errors = "";
+	try {
+	
+		var obj = JSON.parse(fs.readFileSync(testFolder + aviso,"utf8"));
+		obj.id = aviso;
+		callback(obj,errors);
+		
+	} catch (err) {
+		console.log(err);
+		callback(results,err);
+	}
+	callback(results,errors);
+ }
 function Get_t_ofrecidos(callback){
 	const testFolder = '/data/t_ofrecido/';
 	const fs = require('fs');
