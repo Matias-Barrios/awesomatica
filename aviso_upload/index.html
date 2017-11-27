@@ -56,7 +56,7 @@
 				<div class="col-md-12">
 						
 						<div class="col-md-12 image_div_preview" >
-							<label> Previsualizacion :  </label><BR>
+							<label> Previsualizacion 1:  </label><BR>
 							<img class="image_preview" ng-show="uploadme" src="{{uploadme}}"></img>
 							
 						</div><BR>
@@ -68,12 +68,46 @@
 						</div>
 						
 				</div><BR>
+				<div class="col-md-12">
+						
+						<div class="col-md-12 image_div_preview" >
+							<label> Previsualizacion 2:  </label><BR>
+							<img class="image_preview" ng-show="uploadme2" src="{{uploadme2}}"></img>
+							
+						</div><BR>
+						<div class="col-md-12"><BR>
+						   
+						</div>
+						<div class="inputWrapper">
+						   <input class="fileInput btn-primary" type="file" onchange="angular.element(this).scope().setFile2(this)" fileread="uploadme2" > <font color="white"><b>Foto...</b></font></input>
+						</div>
+						
+				</div><BR>
+				<div class="col-md-12">
+						
+						<div class="col-md-12 image_div_preview" >
+							<label> Previsualizacion 3:  </label><BR>
+							<img class="image_preview" ng-show="uploadme3" src="{{uploadme3}}"></img>
+							
+						</div><BR>
+						<div class="col-md-12"><BR>
+						   
+						</div>
+						<div class="inputWrapper">
+						   <input class="fileInput btn-primary" type="file" onchange="angular.element(this).scope().setFile3(this)" fileread="uploadme3" > <font color="white"><b>Foto...</b></font></input>
+						</div>
+						
+				</div><BR>
+
+				
 				
 				<div class="col-md-12 spacing">
 				</div>
 				<div class="col-md-12">
 					<p ng-show="result_upload" ><font color="red">{{ result_upload }}</font> </p>
 					<p ng-show="result_upload" ><font color="red">{{ result_photo_upload }}</font> </p>
+					<p ng-show="result_upload" ><font color="red">{{ result_photo_upload2 }}</font> </p>
+					<p ng-show="result_upload" ><font color="red">{{ result_photo_upload3 }}</font> </p>
 				</div>
 				<div class="col-md-12">
 					<button id="subir_boton" class="btn-success" name="mis_fotos" ng-click="subir_informacion()" ><font  color="white"><b>CREAR</b></font></button><BR>

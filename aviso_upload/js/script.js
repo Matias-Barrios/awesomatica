@@ -17,11 +17,24 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		src : ''
 	};
 	
-	 $scope.setFile = function(element) {
+	$scope.setFile = function(element) {
         $scope.$apply(function($scope) {
             $scope.theFile = element.files[0];
         });
     };
+	$scope.setFile2 = function(element) {
+        $scope.$apply(function($scope) {
+            $scope.theFile2 = element.files[0];
+        });
+    };
+	
+	$scope.setFile3 = function(element) {
+        $scope.$apply(function($scope) {
+            $scope.theFile3 = element.files[0];
+        });
+    };
+	
+	
 	$scope.aviso.images.push(object);
 		
 	$scope.subir_informacion = function() {
@@ -49,12 +62,26 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		*/
 		$scope.aviso.phones = $scope.phones_input.split(";");
 		$scope.aviso.tags = $scope.aviso.tags + " " + $scope.aviso.name + " " + $scope.aviso.description + " " +  $scope.aviso.address
+		$scope.aviso.current_image = 0;
 		var post_data = {};
 		post_data.api_password = $scope.api_password_input;
 		post_data.file_name = Date.now() + "_" + Math.floor(Math.random() * 100000);
 		post_data.file_content = $scope.aviso;
-		$scope.aviso.images[0].src = "images/" + "foto_avisos_" + $scope.theFile.name;
-		 $scope.uploadImage();
+		if ($scope.theFile) {
+			$scope.aviso.images[0].src = "images/" + "foto_avisos_" + $scope.theFile.name;
+			$scope.uploadImage();
+		}
+		if ($scope.theFile2) {
+			$scope.aviso.images[1] = {};
+			$scope.aviso.images[1].src = "images/" + "foto_avisos_" + $scope.theFile2.name;
+			$scope.uploadImage2();
+		}
+		if ($scope.theFile3){
+			$scope.aviso.images[2] = {};
+			$scope.aviso.images[2].src = "images/" + "foto_avisos_" + $scope.theFile3.name;
+			$scope.uploadImage3();
+		}
+		 
 		$http({
 							method: 'POST',
 							url: 'http://45.33.116.147:3000/put_aviso',
@@ -104,6 +131,62 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
         })
         .error(function(response) {
           $scope.result_photo_upload = "Error uploading picture : " + JSON.stringify(response)
+        });
+    }
+	$scope.uploadImage2 = function() {
+	  
+      var fd = new FormData();
+	  var imgBlob = dataURItoBlob($scope.uploadme2);
+     
+	  fd.append('api_password',$scope.api_password_input);
+      fd.append('file', imgBlob, $scope.theFile2.name);
+	   
+	  
+      $http.post(
+          'http://45.33.116.147:4000/upload_aviso',
+		  fd, {
+			
+            transformRequest: angular.identity,
+            headers: {
+              'Content-Type': undefined
+            }
+			
+			
+          }
+        )
+        .success(function(response) {
+          $scope.result_photo_upload2 = "Photo Successfully uploaded"
+        })
+        .error(function(response) {
+          $scope.result_photo_upload2 = "Error uploading picture : " + JSON.stringify(response)
+        });
+    }
+	$scope.uploadImage3 = function() {
+	  
+      var fd = new FormData();
+	  var imgBlob = dataURItoBlob($scope.uploadme3);
+     
+	  fd.append('api_password',$scope.api_password_input);
+      fd.append('file', imgBlob, $scope.theFile3.name);
+	   
+	  
+      $http.post(
+          'http://45.33.116.147:4000/upload_aviso',
+		  fd, {
+			
+            transformRequest: angular.identity,
+            headers: {
+              'Content-Type': undefined
+            }
+			
+			
+          }
+        )
+        .success(function(response) {
+          $scope.result_photo_upload3 = "Photo Successfully uploaded"
+        })
+        .error(function(response) {
+          $scope.result_photo_upload3 = "Error uploading picture : " + JSON.stringify(response)
         });
     }
 	  //the save method
