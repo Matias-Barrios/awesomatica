@@ -17,6 +17,7 @@
 	  <script src="js/angular.min.js"></script>
 	  <script src="js/ng-table.min.js"></script>
       <script src="js/angular-local-storage.min.js"></script>
+	  <script src="js/angular-socialshare.js"></script>
 	  <script src="js/script.js"></script>
     </head>
 	
@@ -77,6 +78,25 @@
 									<img class="imagen_estatica" src="{{ aviso.images[aviso.current_image].src}}" ></img>
 									<button class="prev_image" ng-click="prev_image(aviso)" ng-show="aviso.images.length != 1" > <i class="fa fa-arrow-left" aria-hidden="true"></i></button>
 									<button class="next_image" ng-click="next_image(aviso)" ng-show="aviso.images.length != 1" > <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+									<BR>
+									<img  class="icon_social_network"  src="images/social-facebook-icon.png" href="#"
+									socialshare
+									socialshare-provider="twitter"
+									socialshare-text="Guia Piedras Blancas http://piedrasblancas.com.uy/#?filtro={{aviso.name}}"
+									socialshare-hashtags="piedrasblancas, anuncio"
+									socialshare-url="http://piedrasblancas.com.uy/#?filtro={{aviso.name}}">
+										
+									</img>
+									<img  class="icon_social_network"  src="images/whatsapp_share.jpg" href="#"
+									socialshare
+									socialshare-provider="whatsapp"
+									socialshare-text="Guia Piedras Blancas http://piedrasblancas.com.uy/#?filtro={{aviso.name}}"
+									socialshare-hashtags="piedrasblancas, anuncio"
+									socialshare-url="http://piedrasblancas.com.uy/#?filtro={{aviso.name}}">
+										
+									</img>										
+									
+
 								</div>
 								<div class="identificador_de_aviso">								
 									<span class="id_json" >{{ ::aviso.id }}</span>
@@ -146,6 +166,7 @@
 											<span class="text_telefono" ng-repeat="telefono in t_ofrecido.phones">  <a href="tel:{{ telefono }}">{{::telefono}}</a>  </span>
 											 </p>
 										<p class="texto_aviso info_aviso"> <span class="application_text_t_ofrecidos" > Descripcion : </span> {{ ::t_ofrecido.descripcion }} </p>				
+										
 									</div>
 									
 								</div>
@@ -157,7 +178,7 @@
 		</div>
 	  
 	  </div>
-	<div class="fatal_error" ng-show="fatal_error">
+	<div class="fatal_error" ng-show="fatal_error ">
 		<p> Se ha producido un error. Vuelve a intentarlo mas tarde.</p>
 		<p ng-show="error_on_view" ><font color="red">{{ error_on_view }}</font></p>
 	</div>
@@ -395,7 +416,8 @@
             </style>
 </script>
 
- 
+
+
 
 </html>
 

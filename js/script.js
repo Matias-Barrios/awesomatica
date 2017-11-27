@@ -1,4 +1,4 @@
-var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
+var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.socialshare']);
   	
 	main_app.config(function (localStorageServiceProvider,$httpProvider) {
 			localStorageServiceProvider
