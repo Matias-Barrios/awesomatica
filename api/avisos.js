@@ -197,7 +197,7 @@ app.get('/get_horoscopo', function (req, res) {
   
 });
 app.get('/get_aviso', function (req, res) {
-  var query = url.parse(req.url, true);
+  var query = req.params;
   Get_Aviso( query.aviso_id,function (results,errors){
 	  if(errors) {
 		res.header('Access-Control-Allow-Origin', '*');
