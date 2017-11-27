@@ -685,6 +685,7 @@ md-card {
 	min-height : 500px;
 	vertical-align : middle;
 	padding-top : 30%;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 .trabajo_ofrecido_titulo {
