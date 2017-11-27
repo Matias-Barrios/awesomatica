@@ -86,6 +86,83 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 								$scope.fatal_error = true;
 						});
 		}
+		$scope.next_image = function (aviso){ 
+		console.log("Clickie : " + JSON.stringify(aviso));
+			if (aviso.current_image == (aviso.images.length - 1))
+				return aviso.current_image = 0;
+			
+			if (aviso.current_image < (aviso.images.length - 1))
+				return aviso.current_image = aviso.current_image + 1 ;
+				
+		}
+		$scope.prev_image = function (aviso){ 
+		console.log("Clickie : " + JSON.stringify(aviso));
+			if (aviso.current_image == 0 )
+				return aviso.current_image = (aviso.images.length - 1);
+			
+			if (aviso.current_image > 0)
+				return aviso.current_image = aviso.current_image - 1 ;
+				
+		}
+		$scope.get_avisos_test = function(){
+			
+			var my_array_of_avisos = [{
+				 "images": [
+					{
+					  "src": "images/h_virgo.png"
+					},
+					{
+					  "src": "images/h_aries.png"
+					}
+				  ],
+				  "visible": true,
+				  "sensible": false,
+				  "name": "Ferreteria Venus",
+				  "address": "Teniente Galeano 2358",
+				  "description": "Una ferreteria re pipi cucu",
+				  "tags": "ferreteria barraca reparacion tornillos",
+				  "phones": [
+					"22271616"
+				  ],
+				 "current_image" : 1
+			}];
+			
+							
+			$scope.tableParams = new NgTableParams({
+									count: 5								
+								},{
+									counts: [],
+									getData: function(params) {
+										
+										 // organize filter as $filter understand it (graph object)
+											var filters = {};
+											angular.forEach(params.filter(), function(val,key){
+												var filter = filters;
+												var parts = key.split('.');
+												for (var i=0;i<parts.length;i++){
+													if (i!=parts.length-1) {
+														filter[parts[i]] = {};
+														filter = filter[parts[i]];
+													}
+													else {
+														filter[parts[i]] = val;
+													}
+												}
+											})
+										var theData = angular.copy(my_array_of_avisos);
+										var filteredData = params.filter() ? $filter('filter')(theData, filters) : theData;
+										
+										orderedData = $filter('orderBy')(filteredData, params.orderBy());
+										$scope.table_filtered_and_ordered_data = orderedData;
+										$scope.number_of_filtered_results = filteredData.length;
+										params.total($scope.table_filtered_and_ordered_data.length);
+										return orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());;
+									}
+								});				
+			
+								
+					
+		}
 		$scope.get_horoscopo = function(){
 			
 			$http({
