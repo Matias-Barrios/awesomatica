@@ -34,13 +34,14 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 		$scope.show_main = true;
 		$scope.show_horoscopo = false;
 		$scope.show_trabajo_ofrecido = false;
-		
+		var pagina = $location.search().pagina;
+		var filtro = $location.search().filtro;
 		
 		
 		// END GLOBAL VARIABLES
 		
 		
-		$scope.get_avisos = function(){
+		$scope.get_avisos = function(filtro){
 			
 			$http({
 						method: 'GET',
@@ -52,7 +53,10 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 								$scope.fatal_error = true;
 							}
 							$scope.tableParams = new NgTableParams({
-									count: 5								
+									count: 5,
+									filter : {
+										tags : filtro
+									}									
 								},{
 									counts: [],
 									getData: function(params) {
@@ -196,7 +200,10 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 							$scope.api_response_t_ofrecido = response.data;
 							$scope.total_number_of_t_ofrecidos = response.data.length; 							
 							$scope.tableParams_trabajos_ofrecidos = new NgTableParams({
-									count: 5								
+									count: 5,
+									filter : {
+										tags : filtro
+									}									
 								},{
 									counts: [],
 									getData: function(params) {
@@ -254,13 +261,20 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 			$scope.show_main = true;
 		}
 		$scope.display_trabajo_ofrecido = function(){
-			$scope.get_trabajos_ofrecidos();
+			$scope.get_trabajos_ofrecidos(filtro);
 			$scope.hide_all();
 			$scope.show_trabajo_ofrecido = true;
 		}
 		//RUN ONCE
-		$scope.get_avisos();
+		
+		$scope.get_avisos(filtro);
 		$scope.display_main();
+		if (pagina == "t_ofrecido") {
+			$scope.display_trabajo_ofrecido();
+			
+		}
+			
+		
 		
 		
 		
