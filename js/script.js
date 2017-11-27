@@ -47,7 +47,10 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 						url: 'http://45.33.116.147:3000/get_avisos' 
 						}).then(function successCallback(response) {
 							$scope.api_response = response.data;
-							$scope.total_number_of_avisos = response.data.length; 							
+							$scope.total_number_of_avisos = response.data.length; 	
+							if ( $scope.total_number_of_avisos == 0) {
+								$scope.fatal_error = true;
+							}
 							$scope.tableParams = new NgTableParams({
 									count: 5								
 								},{
@@ -87,7 +90,7 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 						});
 		}
 		$scope.next_image = function (aviso){ 
-		console.log("Clickie : " + JSON.stringify(aviso));
+	
 			if (aviso.current_image == (aviso.images.length - 1))
 				return aviso.current_image = 0;
 			
@@ -96,7 +99,7 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule']);
 				
 		}
 		$scope.prev_image = function (aviso){ 
-		console.log("Clickie : " + JSON.stringify(aviso));
+		
 			if (aviso.current_image == 0 )
 				return aviso.current_image = (aviso.images.length - 1);
 			
