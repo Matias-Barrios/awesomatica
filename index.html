@@ -10,8 +10,8 @@
 	<head>
 	  <title>PiedrasBlancas.com.uy</title>
       <link rel="icon" href="fav_icon.png">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+      <link rel="stylesheet" href="styles/bootstrap.min.css" />
+      <link rel="stylesheet" href="styles/font-awesome.min.css" />
 	  <link rel="stylesheet" href="styles/ng-table.min.css">
 	  <link rel="stylesheet" href="styles/style.css" />
 	  <script src="js/angular.min.js"></script>
@@ -46,10 +46,10 @@
 	<div class="centered-content" id="main_div" ng-show="! fatal_error && show_main"   > 
 			<div class="gifs_anuncions_animados" >
 				<div class="gifs_anuncions_animados_1" >
-					<img src="icons/anunciate_aqui.gif"></img>
+					<img src="images/anunciate_aqui.gif"></img>
 				</div>
 				<div class="gifs_anuncions_animados_2" >
-					<img src="icons/anunciate_aqui.gif"></img>
+					<img src="images/anunciate_aqui.gif"></img>
 				</div>
 			</div>
 			
@@ -79,7 +79,7 @@
 									<button class="prev_image" ng-click="prev_image(aviso)" ng-show="aviso.images.length != 1" > <i class="fa fa-arrow-left" aria-hidden="true"></i></button>
 									<button class="next_image" ng-click="next_image(aviso)" ng-show="aviso.images.length != 1" > <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
 									<BR>
-									<img  class="icon_social_network"  src="icons/social-facebook-icon.png" href="#"
+									<img  class="icon_social_network"  src="images/social-facebook-icon.png" href="#"
 									socialshare
 									socialshare-provider="facebook"
 									socialshare-text="Guia Piedras Blancas"
@@ -93,7 +93,7 @@
 									socialshare-text="Guia Piedras Blancas"
 									socialshare-hashtags="piedrasblancas, anuncio"
 									socialshare-url="http://piedrasblancas.com.uy/#?filtro={{aviso.name}}">
-									<img class="icon_social_network"  src="icons/whatsapp_share.jpg" ></img>
+									<img class="icon_social_network"  src="images/whatsapp_share.jpg" ></img>
 									</a>										
 									
 
@@ -166,7 +166,7 @@
 											<span class="text_telefono" ng-repeat="telefono in t_ofrecido.phones">  <a href="tel:{{ telefono }}">{{::telefono}}</a>  </span>
 											 </p>
 										<p class="texto_aviso info_aviso"> <span class="application_text_t_ofrecidos" > Descripcion : </span> {{ ::t_ofrecido.descripcion }} </p>				
-									<img  class="icon_social_network"  src="icons/social-facebook-icon.png" href="#"
+									<img  class="icon_social_network"  src="images/social-facebook-icon.png" href="#"
 									socialshare
 									socialshare-provider="facebook"
 									socialshare-text="Guia Piedras Blancas"
@@ -180,7 +180,7 @@
 									socialshare-text="Guia Piedras Blancas"
 									socialshare-hashtags="piedrasblancas, anuncio"
 									socialshare-url="http://piedrasblancas.com.uy/#?pagina=t_ofrecido&filtro={{aviso.name}}">
-									<img class="icon_social_network"  src="icons/whatsapp_share.jpg" ></img>
+									<img class="icon_social_network"  src="images/whatsapp_share.jpg" ></img>
 									</a>	
 									</div>
 									
@@ -203,7 +203,7 @@
 			<p> Contacto : soymatiasbarrios@gmail.com </p>
 		</div>
 		<div id="main_footer_picture" >
-			<img id="main_footer_img" src="icons/whatsapp_icon.png" ></img>
+			<img id="main_footer_img" src="images/whatsapp_icon.png" ></img>
 		</div>
 		<div id="main_footer_picture_quiere_ver" >
 			<span id="main_footer_picture_text"> Quiere ver su anuncio aqui? 093-507-864 </span>
