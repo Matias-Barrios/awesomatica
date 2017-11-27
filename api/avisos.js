@@ -196,6 +196,25 @@ app.get('/get_horoscopo', function (req, res) {
   });
   
 });
+app.get('/get_aviso', function (req, res) {
+  var query = url.parse(request.url, true).query;
+  Get_Aviso( query.aviso_id,function (results,errors){
+	  if(errors) {
+		res.header('Access-Control-Allow-Origin', '*');
+    		res.header('Access-Control-Allow-Methods', '*');
+    		res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+		res.header('Content-Type', 'text/html'); 
+		res.status(500).end('Something weird happened!! : ' + errors);
+	  } else {
+		res.header('Access-Control-Allow-Origin', '*');
+    		res.header('Access-Control-Allow-Methods', '*');
+    		res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+		res.header('Content-Type', 'application/json'); 
+		res.status(200).end(JSON.stringify(results));
+	  }
+  });
+  
+});
 
 // POST Methdods
 app.post('/put_aviso', function (req, res) {
@@ -252,6 +271,7 @@ app.post('/crear_horoscopo', function (req, res) {
 });
 
 app.post('/crear_t_ofrecido', function (req, res) {
+  
   if ( req.body.api_password == PASSWORD ) {
 	 
 	  Put_t_ofrecido( req.body, function (results,errors){
