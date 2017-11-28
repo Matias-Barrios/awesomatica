@@ -839,3 +839,68 @@ ng-table-sort-header{
 	max-width : 50px;
 	max-height : 50px;
 }
+
+.disabled_button_next {
+  background: #559107;
+  background-image: -webkit-linear-gradient(top, #535362, #868695);
+  background-image: -moz-linear-gradient(top, #535362, #868695);
+  background-image: -ms-linear-gradient(top, #535362, #868695);
+  background-image: -o-linear-gradient(top, #535362, #868695);
+  background-image: linear-gradient(to bottom, #535362, #868695);
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  text-shadow: 1px 1px 3px #666666;
+  -webkit-box-shadow: 3px 1px 7px #666666;
+  -moz-box-shadow: 3px 1px 7px #666666;
+  box-shadow: 3px 1px 7px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  border-top-right-radius : 10px;
+  border-bottom-right-radius : 10px;
+  width : 45%;
+}
+.disabled_button_next:hover {
+  background: #535362;
+  background-image: -webkit-linear-gradient(top, #535362, #868695);
+  background-image: -moz-linear-gradient(top, #535362, #868695);
+  background-image: -ms-linear-gradient(top, #535362, #868695);
+  background-image: -o-linear-gradient(top, #535362, #868695);
+  background-image: linear-gradient(to bottom, #535362, #868695);
+  text-decoration: none;
+}
+.disabled_button_prev {
+  background: #559107;
+  background-image: -webkit-linear-gradient(top, #535362, #868695);
+  background-image: -moz-linear-gradient(top, #535362, #868695);
+  background-image: -ms-linear-gradient(top, #535362, #868695);
+  background-image: -o-linear-gradient(top, #535362, #868695);
+  background-image: linear-gradient(to bottom, #535362, #868695);
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  text-shadow: 1px 1px 3px #666666;
+  -webkit-box-shadow: 3px 1px 7px #666666;
+  -moz-box-shadow: 3px 1px 7px #666666;
+  box-shadow: 3px 1px 7px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  border-top-left-radius : 10px;
+  border-bottom-left-radius : 10px;
+  width : 45%;
+}
+.disabled_button_prev:hover {
+  background: #535362;
+  background-image: -webkit-linear-gradient(top, #535362, #868695);
+  background-image: -moz-linear-gradient(top, #535362, #868695);
+  background-image: -ms-linear-gradient(top, #535362, #868695);
+  background-image: -o-linear-gradient(top, #535362, #868695);
+  background-image: linear-gradient(to bottom, #535362, #868695);
+  text-decoration: none;
+}

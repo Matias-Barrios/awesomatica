@@ -20,7 +20,17 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
         }
     };
         });
-	
+	main_app.directive('imageonload', function() {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                element.bind('load', function() {
+                    //call the function that was passed
+                    scope.$apply(attrs.imageonload);
+                });
+            }
+        };
+    })
 	
 	
 	
@@ -40,7 +50,10 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
 		
 		// END GLOBAL VARIABLES
 		
-		
+		$scope.enable_buttons = function(){
+			console.log("Image loaded!");
+			$scope.carrousel_toggle = true;
+		}
 		$scope.get_avisos = function(filtro){
 			
 			$http({
@@ -94,7 +107,7 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
 						});
 		}
 		$scope.next_image = function (aviso){ 
-	
+			$scope.carrousel_toggle = false;
 			if (aviso.current_image == (aviso.images.length - 1))
 				return aviso.current_image = 0;
 			
@@ -103,7 +116,7 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
 				
 		}
 		$scope.prev_image = function (aviso){ 
-		
+			$scope.carrousel_toggle = false;
 			if (aviso.current_image == 0 )
 				return aviso.current_image = (aviso.images.length - 1);
 			

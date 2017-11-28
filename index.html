@@ -75,9 +75,9 @@
 									<p class="texto_aviso info_aviso"> <span class="application_text" > Descripcion : </span> {{ ::aviso.description }} </p>				
 								</div>
 								<div class="aviso_en_celda_fotos">
-									<img class="imagen_estatica" src="{{ aviso.images[aviso.current_image].src}}" ></img>
-									<button class="prev_image" ng-click="prev_image(aviso)" ng-show="aviso.images.length != 1" > <i class="fa fa-arrow-left" aria-hidden="true"></i></button>
-									<button class="next_image" ng-click="next_image(aviso)" ng-show="aviso.images.length != 1" > <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+									<img class="imagen_estatica" ng-src="{{ aviso.images[aviso.current_image].src }}" imageonload="enable_buttons()()"   ></img>
+									<button ng-disabled="! carrousel_toggle" ng-class="(carrousel_toggle) ? 'prev_image' : 'disabled_button' " ng-click="prev_image(aviso)" ng-show="aviso.images.length != 1" > <i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+									<button ng-disabled="! carrousel_toggle" ng-class="(carrousel_toggle) ? 'next_image' : 'disabled_button' " ng-click="next_image(aviso)" ng-show="aviso.images.length != 1" > <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
 									<BR>
 									<img  class="icon_social_network"  src="icons/social-facebook-icon.png" href="#"
 									socialshare
