@@ -25,10 +25,14 @@ function Get_Avisos(callback){
 	var errors = "";
 	try {
 	fs.readdirSync(testFolder).forEach(file => {
-		var obj = JSON.parse(fs.readFileSync(testFolder + file,"utf8"));
-		obj.id = file;
-		if (obj.visible == true )
-			results.push(obj);
+		try {
+			var obj = JSON.parse(fs.readFileSync(testFolder + file,"utf8"));
+			obj.id = file;
+			if (obj.visible == true )
+				results.push(obj);
+		}catch (err)  {
+			console.log("ERROR PARSING JSON AT FILE : " + file + " ## " + err);
+			}
 		});
 	} catch (err) {
 		console.log(err);
