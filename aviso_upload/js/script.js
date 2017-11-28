@@ -36,7 +36,28 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 	
 	
 	$scope.aviso.images.push(object);
-		
+	
+	$scope.cargar_anuncio = function(){
+		$scope.cargar_error = "";
+		$http({
+							method: 'GET',
+							url: 'http://45.33.116.147:3000/get_aviso?aviso_id=' + $scope.cargar_anuncio_text,
+														
+							  
+							}).then(function successCallback(response) {
+									// this callback will be called asynchronously
+									// when the response is available
+									 $scope.aviso = response.data;		
+									 $scope.phones_input = String(response.data.phones).replace(',',';');
+									
+							}, function errorCallback(err) {
+										// called asynchronously if an error occurs
+									// or server returns response with an error status.
+									$scope.cargar_error = "Error : " + JSON.stringify(err.data);									
+									
+							});
+	}
+	
 	$scope.subir_informacion = function() {
 		 $scope.result_upload = "";
 		/* EJEMPLO DE POST REQUEST
@@ -65,7 +86,10 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		$scope.aviso.current_image = 0;
 		var post_data = {};
 		post_data.api_password = $scope.api_password_input;
-		post_data.file_name = Date.now() + "_" + Math.floor(Math.random() * 100000);
+		if (! $scope.cargar_anuncio_text)
+			post_data.file_name = Date.now() + "_" + Math.floor(Math.random() * 100000);
+		else
+			post_data.file_name = $scope.cargar_anuncio_text.replace(".json","");
 		post_data.file_content = $scope.aviso;
 		if ($scope.theFile) {
 			$scope.aviso.images[0].src = "images/" + "foto_avisos_" + $scope.theFile.name;

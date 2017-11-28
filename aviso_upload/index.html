@@ -27,6 +27,12 @@
 				<label> API Password : </label><BR>
 				<input maxlength="15"  class="input_aviso" id="api_password" type="text" ng-model="api_password_input"></input><BR>
 								
+				<div class="load_file" >
+					<label> Cargar anuncio : </label><BR>
+					<input maxlength="40"  class="input_aviso" id="api_password" type="text" ng-model="cargar_anuncio_text"></input><BR>
+					<button class="btn-success cargar_boton" ng-show="cargar_anuncio_text && cargar_anuncio_text != ''" ng-click="cargar_anuncio(cargar_anuncio_text)" >Cargar</button>
+					<p ng-show="cargar_error" >{{ cargar_error }} </p>
+				</div>
 				<BR>
 				<label> Nombre : </label><BR>
 				<input maxlength="38" class="input_aviso" id="aviso_name" type="text" ng-model="aviso.name" ></input><BR>
