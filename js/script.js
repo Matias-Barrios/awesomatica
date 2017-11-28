@@ -51,7 +51,6 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
 		// END GLOBAL VARIABLES
 		
 		$scope.enable_buttons = function(){
-			console.log("Image loaded!");
 			$scope.carrousel_toggle = true;
 		}
 		$scope.get_avisos = function(filtro){
