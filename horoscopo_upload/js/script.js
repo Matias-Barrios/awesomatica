@@ -14,7 +14,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 			gobernado : "Urano, Saturno",
 			compatibilidad : "Leo, Sagitario",
 			numeros_suerte : "4, 7, 11, 22, 29",
-			imagen : "images/h_acuario.png",
+			imagen : "icons/h_acuario.png",
 			fechas : "20 de Enero al 18 de Febrero",
 			informacion : ""
 		},
@@ -26,7 +26,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 			gobernado : "Neptuno, Jupiter",
 			compatibilidad : "Virgo, Tauro",
 			numeros_suerte : "3, 9, 12, 15, 18, 24",
-			imagen : "images/h_piscis.png",
+			imagen : "icons/h_piscis.png",
 			fechas : "19 de Febrero al 20 de Marzo",
 			informacion : ""
 		},
@@ -38,7 +38,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 			gobernado : "Marte",
 			compatibilidad : "Libra, Leo",
 			numeros_suerte : "1, 8, 17",
-			imagen : "images/h_aries.png",
+			imagen : "icons/h_aries.png",
 			fechas : "21 de Marzo al 19 de Abril",
 			informacion : ""
 		},
@@ -50,7 +50,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 			gobernado : "Venus",
 			compatibilidad : "Escorpio, Cancer",
 			numeros_suerte : "2, 6, 9, 12, 24",
-			imagen : "images/h_tauro.png",
+			imagen : "icons/h_tauro.png",
 			fechas : "20 de Abril al 20 de Mayo",
 			informacion : ""
 		},
@@ -62,7 +62,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 			gobernado : "Mercurio",
 			compatibilidad : "Sagitario, Acuario",
 			numeros_suerte : "5, 7, 14, 23",
-			imagen : "images/h_geminis.png",
+			imagen : "icons/h_geminis.png",
 			fechas : "21 de Mayo al 20 de Junio",
 			informacion : ""
 		},
@@ -74,7 +74,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 			gobernado : "Luna",
 			compatibilidad : "Capricornio, Tauro",
 			numeros_suerte : "2, 3, 15, 20",
-			imagen : "images/h_cancer.png",
+			imagen : "icons/h_cancer.png",
 			fechas : "21 de Junio al 22 de Julio",
 			informacion : ""
 		},
@@ -86,7 +86,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 			gobernado : "Sol",
 			compatibilidad : "Acuario, Geminis",
 			numeros_suerte : "1, 3, 10, 19",
-			imagen : "images/h_leon.png",
+			imagen : "icons/h_leon.png",
 			fechas : "23 de Julio al 22 de Agosto",
 			informacion : ""
 		},
@@ -98,7 +98,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 			gobernado : "Mercurio",
 			compatibilidad : "Piscis, Cancer",
 			numeros_suerte : "5, 14, 15, 23, 32",
-			imagen : "images/h_virgo.png",
+			imagen : "icons/h_virgo.png",
 			fechas : "23 de Agosto al 22 de Septiembre",
 			informacion : ""
 		},
@@ -110,7 +110,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 			gobernado : "Venus",
 			compatibilidad : "Aries, Sagitario",
 			numeros_suerte : "4, 6, 13, 15, 24",
-			imagen : "images/h_libra.png",
+			imagen : "icons/h_libra.png",
 			fechas : "23 de Septiembre al 22 de Octubre",
 			informacion : ""
 		},
@@ -122,7 +122,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 			gobernado : "Pluton, Marte",
 			compatibilidad : "Tauro, Cancer",
 			numeros_suerte : "8, 11, 18, 22",
-			imagen : "images/h_escorpio.png",
+			imagen : "icons/h_escorpio.png",
 			fechas : "23 de Octubre al 21 de Noviembre",
 			informacion : ""
 		},
@@ -134,7 +134,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 			gobernado : "Jupiter",
 			compatibilidad : "Geminis, Aries",
 			numeros_suerte : "3, 7, 9, 12, 21",
-			imagen : "images/h_sagitario.png",
+			imagen : "icons/h_sagitario.png",
 			fechas : "22 de Noviembre al 21 de Diciembre",
 			informacion : ""
 		},
@@ -146,7 +146,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 			gobernado : "Saturno",
 			compatibilidad : "Tauro, Cancer",
 			numeros_suerte : "4, 8, 13, 22",
-			imagen : "images/h_capricornio.png",
+			imagen : "icons/h_capricornio.png",
 			fechas : "22 de Diciembre al 19 de Enero",
 			informacion : ""
 		}
