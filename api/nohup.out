@@ -1,0 +1,127 @@
+Example app listening on port 3000!
+panaderia_la_fragata.json
+plaza_los_bobitos.json
+panaderia_la_fragata.json
+plaza_los_bobitos.json
+panaderia_la_fragata.json
+plaza_los_bobitos.json
+panaderia_la_fragata.json
+plaza_los_bobitos.json
+panaderia_la_fragata.json
+plaza_los_bobitos.json
+panaderia_la_fragata.json
+plaza_los_bobitos.json
+panaderia_la_fragata.json
+plaza_los_bobitos.json
+panaderia_la_fragata.json
+plaza_los_bobitos.json
+panaderia_la_fragata.json
+plaza_los_bobitos.json
+panaderia_la_fragata.json
+plaza_los_bobitos.json
+panaderia_la_fragata.json
+plaza_los_bobitos.json
+panaderia_la_fragata.json
+plaza_los_bobitos.json
+plaza_los_bobitos.json
+plaza_los_bobitos.json
+plaza_los_bobitos.json
+plaza_los_bobitos.json
+plaza_los_bobitos.json
+plaza_los_bobitos.json
+plaza_los_bobitos.json
+panaderia_liberty.json
+plaza_los_bobitos.json
+panaderia_liberty.json
+plaza_los_bobitos.json
+panaderia_liberty.json
+plaza_los_bobitos.json
+Example app listening on port 3000!
+panaderia_liberty.json
+plaza_los_bobitos.json
+panaderia_liberty.json
+plaza_los_bobitos.json
+panaderia_liberty.json
+plaza_los_bobitos.json
+panaderia_liberty.json
+plaza_los_bobitos.json
+burdel_maria.json
+carniceria_la_española.json
+farmacia_luxor.json
+jugueteria_el_nino.json
+panaderia_liberty.json
+plaza_los_bobitos.json
+supermercado_tata.json
+burdel_maria.json
+carniceria_la_española.json
+farmacia_luxor.json
+jugueteria_el_nino.json
+panaderia_liberty.json
+plaza_los_bobitos.json
+supermercado_tata.json
+Example app listening on port 3000!
+burdel_maria.json
+carniceria_la_española.json
+farmacia_luxor.json
+jugueteria_el_nino.json
+panaderia_liberty.json
+plaza_los_bobitos.json
+supermercado_tata.json
+burdel_maria.json
+carniceria_la_española.json
+farmacia_luxor.json
+jugueteria_el_nino.json
+panaderia_liberty.json
+plaza_los_bobitos.json
+supermercado_tata.json
+burdel_maria.json
+carniceria_la_española.json
+farmacia_luxor.json
+jugueteria_el_nino.json
+panaderia_liberty.json
+plaza_los_bobitos.json
+supermercado_tata.json
+burdel_maria.json
+carniceria_la_española.json
+farmacia_luxor.json
+jugueteria_el_nino.json
+panaderia_liberty.json
+plaza_los_bobitos.json
+supermercado_tata.json
+burdel_maria.json
+carniceria_la_española.json
+farmacia_luxor.json
+jugueteria_el_nino.json
+panaderia_liberty.json
+plaza_los_bobitos.json
+supermercado_tata.json
+/var/www/piedrasblancas.com.uy/api/node_modules/express/lib/router/route.js:202
+        throw new Error(msg);
+        ^
+
+Error: Route.post() requires a callback function but got a [object Object]
+    at Route.(anonymous function) [as post] (/var/www/piedrasblancas.com.uy/api/node_modules/express/lib/router/route.js:202:15)
+    at Function.proto.(anonymous function) [as post] (/var/www/piedrasblancas.com.uy/api/node_modules/express/lib/router/index.js:510:19)
+    at Object.<anonymous> (/var/www/piedrasblancas.com.uy/api/avisos.js:17:8)
+    at Module._compile (module.js:410:26)
+    at Object.Module._extensions..js (module.js:417:10)
+    at Module.load (module.js:344:32)
+    at Function.Module._load (module.js:301:12)
+    at Function.Module.runMain (module.js:442:10)
+    at startup (node.js:136:18)
+    at node.js:966:3
+/var/www/piedrasblancas.com.uy/api/node_modules/express/lib/router/route.js:202
+        throw new Error(msg);
+        ^
+
+Error: Route.post() requires a callback function but got a [object Object]
+    at Route.(anonymous function) [as post] (/var/www/piedrasblancas.com.uy/api/node_modules/express/lib/router/route.js:202:15)
+    at Function.proto.(anonymous function) [as post] (/var/www/piedrasblancas.com.uy/api/node_modules/express/lib/router/index.js:510:19)
+    at Object.<anonymous> (/var/www/piedrasblancas.com.uy/api/avisos.js:17:8)
+    at Module._compile (module.js:410:26)
+    at Object.Module._extensions..js (module.js:417:10)
+    at Module.load (module.js:344:32)
+    at Function.Module._load (module.js:301:12)
+    at Function.Module.runMain (module.js:442:10)
+    at startup (node.js:136:18)
+    at node.js:966:3

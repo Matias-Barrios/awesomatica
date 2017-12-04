@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+ <html ng-app="main_app" ng-controller="main_controller">
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="HandheldFriendly" content="true">
+	<head>
+	  <title>Crear Horoscopo</title>
+      <link rel="icon" href="favicon_looking_glass.png">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	  <link rel="stylesheet" href="styles/ng-table.min.css">
+	  <link rel="stylesheet" href="styles/style.css" />
+	  
+	  <script src="js/angular.min.js"></script>
+	  <script src="js/ng-table.min.js"></script>
+      <script src="js/angular-local-storage.min.js"></script>
+	  <script src="js/script.js"></script>
+    </head>
+	<body>
+		<div id="main_div" class ="col-md-2 ">
+			<div class="col-md-12 header_div">
+				<p><b><u> Crear Horoscopo </u></b></p>
+			</div>
+			<div class="col-md-12 info_div">
+				<label> API Password : </label><BR>
+				<input maxlength="15"  class="input_aviso" id="api_password" type="text" ng-model="api_password_input"></input><BR>
+								
+				<BR>
+				
+				
+				<label> Acuario : </label><BR>
+				<textarea class="signo_informacion"   ng-model="signos[0].informacion" ></textarea><BR>
+				
+				<label> Piscis : </label><BR>
+				<textarea class="signo_informacion"   ng-model="signos[1].informacion" ></textarea><BR>
+				
+				<label> Aries : </label><BR>
+				<textarea class="signo_informacion"   ng-model="signos[2].informacion" ></textarea><BR>
+				
+				<label> Tauro : </label><BR>
+				<textarea class="signo_informacion"   ng-model="signos[3].informacion" ></textarea><BR>
+				
+				<label> Geminis : </label><BR>
+				<textarea class="signo_informacion"   ng-model="signos[4].informacion" ></textarea><BR>
+				
+				<label> Cancer : </label><BR>
+				<textarea class="signo_informacion"   ng-model="signos[5].informacion" ></textarea><BR>
+				
+				<label> Leo : </label><BR>
+				<textarea class="signo_informacion"   ng-model="signos[6].informacion" ></textarea><BR>
+				
+				<label> Virgo : </label><BR>
+				<textarea class="signo_informacion"   ng-model="signos[7].informacion" ></textarea><BR>
+				
+				<label> Libra : </label><BR>
+				<textarea class="signo_informacion"   ng-model="signos[8].informacion" ></textarea><BR>
+				
+				<label> Escorpio : </label><BR>
+				<textarea class="signo_informacion"   ng-model="signos[9].informacion" ></textarea><BR>
+				
+				<label> Sagitario : </label><BR>
+				<textarea class="signo_informacion"   ng-model="signos[10].informacion" ></textarea><BR>
+				
+				<label> Capricornio : </label><BR>
+				<textarea class="signo_informacion"   ng-model="signos[11].informacion" ></textarea><BR>
+				<BR>
+				<BR>				
+				
+			</div>
+				
+				<div class="error_upload">
+					<p ng-show="result_upload" ><font color="red">{{ result_upload }}</font> </p>
+					
+				</div>
+				<div class="button_horoscopo">
+					<button id="subir_boton" class="btn-success" ng-click="subir_informacion()" ><font  color="white"><b>CREAR</b></font></button><BR>
+				</div>
+			</div>
+		</div>
+		
+	</body>	
+	
+	
+		
+	
+</html>

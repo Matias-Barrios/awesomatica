@@ -1,0 +1,445 @@
+<!-- index.html -->
+    <!DOCTYPE html>
+
+    <!-- define angular app -->
+<html class="centered-wrapper" ng-app="main_app" ng-controller="main_controller">
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="HandheldFriendly" content="true">
+	<head>
+	  <title>PiedrasBlancas.com.uy</title>
+      <link rel="icon" href="fav_icon.png">
+      <link rel="stylesheet" href="styles/bootstrap.min.css" />
+      <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
+	  <link rel="stylesheet" href="styles/ng-table.min.css">
+	  <link rel="stylesheet" href="styles/style.css" />
+	  <script src="js/angular.min.js"></script>
+	  <script src="js/ng-table.min.js"></script>
+      <script src="js/angular-local-storage.min.js"></script>
+	  <script src="js/angular-socialshare.js"></script>
+	  <script src="js/script.js"></script>
+    </head>
+	
+   
+
+  
+<body class="centered-content" >
+<header>
+	<div class="div_titulo_principal" >
+		<p><font color="white" ><b></i>PiedrasBlancas.com.uy</b></font></p>
+	</div>
+	<div id="div_navegacion" ng-show="activar_navegacion" >
+			
+				<button type="button" class="boton_navegacin" ng-click="display_main();" >Guia de Lugares</button>
+				<button type="button" class="boton_navegacin" ng-click="display_horoscopo();" >Horoscopo Semanal</button>
+				<button type="button" class="boton_navegacin" ng-click="display_trabajo_ofrecido();">Trabajo Ofrecido</button>
+			<div class="div_mostrar_navegacion" ng-click="activar_navegacion = ( ! activar_navegacion )" >
+				<button type="button" id="mostrar_navegacion" ><i class="fa fa-bars" aria-hidden="true"></i> <b>Mostrar Navegacion</b></button>
+			</div>
+	</div>
+	<div class="div_mostrar_navegacion" ng-show="! activar_navegacion" ng-click="activar_navegacion = ( ! activar_navegacion )" >
+		<button type="button" id="mostrar_navegacion" ><i class="fa fa-bars" aria-hidden="true"></i> <b>Mostrar Navegacion</b></button>
+	</div>
+</header>
+
+	<div class="centered-content" id="main_div" ng-show="! fatal_error && show_main"   > 
+			<div class="gifs_anuncions_animados" >
+				<div class="gifs_anuncions_animados_1" >
+					<img src="icons/anunciate_aqui.gif"></img>
+				</div>
+				<div class="gifs_anuncions_animados_2" >
+					<img src="icons/anunciate_aqui.gif"></img>
+				</div>
+			</div>
+			
+			<div class="encabezado_anuncios" >
+				<p><h4 id="texto_guia_de_lugares" >Guía de lugares</h4></p>
+				<p ng-show="total_number_of_avisos != 0" > <b> Viendo <font color="#006cd9"> {{ number_of_filtered_results }}</font> de <font color="#006cd9"> {{ total_number_of_avisos }}</font> </b></p>
+			</div>
+			<table id="main_table" ng-table="tableParams" template-pagination="custom_pager" class="table table-condensed table-bordered table-striped" show-filter="true" >
+			
+				<tr ng-repeat="aviso in $data" >
+					
+						<td data-title="'Realice una busqueda introduciendo una palabra como por ejemplo panaderia o futbol...'"  filter="{ 'tags': 'text'}" >
+							<div class="aviso_en_celda">
+								<div class="aviso_en_celda_informacion">
+									<div class="titulo_wrapper">
+										<p class="texto_aviso titulo_aviso"><u>{{ ::aviso.name }}</u></p>
+									</div>
+									<p class="texto_aviso info_aviso"> <span class="application_text" >  Direccion : </span>  <a href="https://maps.google.com/?q={{ aviso.address }}"> {{ ::aviso.address }} </a></p>
+										<p class="texto_aviso info_aviso" ng-repeat="phone in aviso.phones" > <span class="application_text" > Telefono {{ ($index + 1) }}: 
+											<span> <a class="text_telefono" href="tel:{{ phone }}">{{::phone}}</a> </span> </span> 
+											
+										</p>
+									<p class="texto_aviso info_aviso"> <span class="application_text" > Horarios : </span> {{ ::aviso.horarios }} </p>				
+									<p class="texto_aviso info_aviso"> <span class="application_text" > Descripcion : </span> {{ ::aviso.description }} </p>				
+								</div>
+								<div class="aviso_en_celda_fotos">
+									<img class="imagen_estatica" ng-src="{{ aviso.images[aviso.current_image].src }}" imageonload="enable_buttons()()"   ></img>
+									<button ng-disabled="! carrousel_toggle" ng-class="( carrousel_toggle) ? 'prev_image' : 'disabled_button_prev' " ng-click="prev_image(aviso)" ng-show="aviso.images.length != 1" > <i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+									<button ng-disabled="! carrousel_toggle" ng-class="( carrousel_toggle) ? 'next_image' : 'disabled_button_next' " ng-click="next_image(aviso)" ng-show="aviso.images.length != 1" > <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+									<BR>
+									<img  class="icon_social_network"  src="icons/social-facebook-icon.png" href="#"
+									socialshare
+									socialshare-provider="facebook"
+									socialshare-text="Guia Piedras Blancas"
+									socialshare-hashtags="piedrasblancas, anuncio"
+									socialshare-url="http://piedrasblancas.com.uy/#?filtro={{aviso.name}}">
+										
+									</img>
+									<a href="#"
+									socialshare
+									socialshare-provider="whatsapp"
+									socialshare-text="Guia Piedras Blancas"
+									socialshare-hashtags="piedrasblancas, anuncio"
+									socialshare-url="http://piedrasblancas.com.uy/#?filtro={{aviso.name}}">
+									<img class="icon_social_network"  src="icons/whatsapp_share.jpg" ></img>
+									</a>										
+									
+
+								</div>
+								<div class="identificador_de_aviso">								
+									<span class="id_json" >{{ ::aviso.id.replace('.json','') }}</span>
+								</div>
+							</div>
+						</td>
+					
+				</tr>
+			</table>
+		
+	  </div>
+	  <div class="main_div_horoscopo" ng-show="show_horoscopo" >
+		<table id="tabla_horoscopo" ng-table="tableParams_horoscopo" class="table table-condensed table-bordered table-striped" >
+			<thead>
+			</thead>
+				<tr ng-repeat="signo in $data" >
+					
+						<td>
+							<div class="signo_celda">
+								<div class="signo_foto">
+									<p> {{ ::signo.nombre}} </p>
+									<img src="{{ signo.imagen}}" ></img>
+									
+								</div>
+								<div class="signo_informacion">
+									<p class="signo_fechas" > {{ ::signo.fechas }} </p>
+									<p class="signo_detalles" > <span class="signo_app_detalle" > Elemento :</span>{{ ::signo.elemento }} </p>
+									<p class="signo_detalles" > <span class="signo_app_detalle" > Colores :</span>{{ ::signo.color }} </p>
+									<p class="signo_detalles" > <span class="signo_app_detalle" > Gobernado :</span>{{ ::signo.gobernado }} </p>
+									<p class="signo_detalles" > <span class="signo_app_detalle" > Compatibilidad :</span>{{ ::signo.compatibilidad }} </p>
+									<p class="signo_detalles" > <span class="signo_app_detalle" > Numeros de suerte :</span>{{ ::signo.numeros_suerte }} </p>
+									<div class="signo_informacion_div" >
+										<p> {{ ::signo.informacion }} </p>
+									</div>
+								</div>
+								
+							</div>
+						</td>
+					
+				</tr>
+			</table>
+	  </div>
+	  <div class="main_div_trabajo_ofrecido" ng-show="show_trabajo_ofrecido" >
+		<span class="trabajo_ofrecido_titulo" > Trabajo Ofrecido</span>
+		<p class="trabajo_ofrecido_subtitulo" > Trabajo ofrecido por particulares; pintores, mecanicos, carpinteros etc.</p>
+		<p ng-show="total_number_of_avisos != 0" > <b> Viendo <font color="#006cd9"> {{ number_of_filtered_results_t_ofrecidos }}</font> de <font color="#006cd9"> {{ total_number_of_t_ofrecidos }}</font> </b></p>
+		<div class="trabajos_ofrecidos_tabla">
+			
+			<table id="main_table_t_ofrecidos" ng-table="tableParams_trabajos_ofrecidos" template-pagination="custom_pager" class="table table-condensed table-bordered table-striped" show-filter="true" >
+			
+				<tr ng-repeat="t_ofrecido in $data" >
+					
+						<td data-title="'Realice una busqueda introduciendo una palabra como por ejemplo pintor o mecanico...'"  filter="{ 'tags': 'text'}" >
+							<div class="t_ofrecido_en_celda">
+								<div class="titulo_wrapper_t_ofrecido">
+									<span class="titulo_t_ofrecidos" >   {{ ::t_ofrecido.titulo }}  </span>
+								</div>
+								<div class="info_y_foto_perfil">
+									<div class="t_ofrecido_foto">
+											<img class="t_ofrecido_imagen_statica" src="{{ t_ofrecido.images[0].src }}">
+									</div>
+									<div class="t_ofrecido_informacion">
+										
+										<p class="texto_aviso info_aviso"> <span class="application_text_t_ofrecidos" >  Nombre : </span> {{ ::t_ofrecido.nombre }} </p>
+										<p ng-show="t_ofrecido.address != 'NA'" class="texto_aviso info_aviso"> <span class="application_text_t_ofrecidos" >  Direccion : </span>  <a href="https://maps.google.com/?q={{ aviso.address }}"> {{ t_ofrecido.address }} </a> </p>
+											<p class="texto_aviso info_aviso"> <span class="application_text_t_ofrecidos" > Telefono/s : </span> 
+											<span class="text_telefono" ng-repeat="telefono in t_ofrecido.phones">  <a href="tel:{{ telefono }}">{{::telefono}}</a>  </span>
+											 </p>
+										<p class="texto_aviso info_aviso"> <span class="application_text_t_ofrecidos" > Descripcion : </span> {{ ::t_ofrecido.descripcion }} </p>				
+									<img  class="icon_social_network"  src="icons/social-facebook-icon.png" href="#"
+									socialshare
+									socialshare-provider="facebook"
+									socialshare-text="Guia Piedras Blancas"
+									socialshare-hashtags="piedrasblancas, anuncio"
+									socialshare-url="http://piedrasblancas.com.uy/#?pagina=t_ofrecido&filtro={{aviso.name}}">
+										
+									</img>
+									<a href="#"
+									socialshare
+									socialshare-provider="whatsapp"
+									socialshare-text="Guia Piedras Blancas"
+									socialshare-hashtags="piedrasblancas, anuncio"
+									socialshare-url="http://piedrasblancas.com.uy/#?pagina=t_ofrecido&filtro={{aviso.name}}">
+									<img class="icon_social_network"  src="icons/whatsapp_share.jpg" ></img>
+									</a>	
+									</div>
+									
+								</div>
+							</div>
+						</td>
+					
+				</tr>
+			</table>
+		</div>
+	  
+	  </div>
+	<div class="fatal_error" ng-show="fatal_error ">
+		<p> Se ha producido un error y estamos trabajando para solucionarlo. Vuelve a intentarlo mas tarde.</p>
+		<img src="icons/workers.png" ></img>
+		<p ng-show="error_on_view" ><font color="red">{{ error_on_view }}</font></p>
+	</div>
+	<div id="main_footer" >
+		<div id="main_footer_text" >
+			<p> 2017 - Todos los derechos reservados, Gabriel Matias Barrios Cabrera</p>
+			<p> Contacto : soymatiasbarrios@gmail.com </p>
+		</div>
+		<div id="main_footer_picture" >
+			<img id="main_footer_img" src="icons/whatsapp_icon.png" ></img>
+		</div>
+		<div id="main_footer_picture_quiere_ver" >
+			<span id="main_footer_picture_text"> Quiere ver su anuncio aqui? 093-507-864 </span>
+		</div>
+	</div>
+	
+
+		
+	
+</body>
+<script type="text/ng-template" id="custom_pager">
+   			
+   			<div class="pagination_container">
+				<div ng-if=pages.length class="pagination ng-table-pagination pagination_border" ng-repeat="page in pages" ng-switch=page.type >
+					<!--Prev --->
+					<button  ng-disabled="(! page.active && ! page.current)" ng-switch-when=prev ng-click=params.page(page.number) ng-class="(! page.active && ! page.current) ? 'btn_prev btn_disabled' : 'btn_prev'"  > <i class="fa fa-long-arrow-left" aria-hidden="true"></i> </button>
+					<!--first button --->
+					<button ng-switch-when=first ng-click=params.page(page.number)   ng-class="(page.current) ? 'btn_common btn_active' : 'btn_common btn_inactive' " > <span ng-bind=page.number> </span></button>
+					<!--normal page --->
+					<button ng-switch-when=page ng-click=params.page(page.number) ng-class="(page.current) ? 'btn_common btn_active' : 'btn_common btn_inactive' " > <span ng-bind=page.number> </span></button>
+					<!--more button --->
+					<button ng-disabled="true" ng-switch-when=more ng-click=params.page(page.number)  ng-class="'btn_common btn_disabled'" > ... </button>
+					<!--last button--->
+					<button ng-switch-when=last ng-click=params.page(page.number)  ng-class="(page.current) ? 'btn_common btn_active' : 'btn_common btn_inactive' " > <span ng-bind=page.number></span></button>
+					<!--Next --->
+					<button  ng-disabled="(! page.active && ! page.current)" ng-switch-when=next ng-click=params.page(page.number) ng-class="(! page.active && ! page.current) ? 'btn_next btn_disabled' : 'btn_next'" > <i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+					
+				</div>
+   			</div>
+   			<!--Remember to set ng-show to true if you want to see this --->
+   			<div ng-show="false">
+   				<div class="ng-cloak ng-table-pager" ng-if=params.data.length>
+   					<div ng-if=params.settings().counts.length class="ng-table-counts btn-group pull-right">
+   					<button ng-repeat="count in params.settings().counts" type=button ng-class="{\'active\':params.count() == count}" ng-click=params.count(count) class="btn btn-default">
+   					<span ng-bind=count>
+   					</span>
+   					</button>
+   				</div>
+   			</div>
+   			
+   			<style>
+			@media only screen and (min-width: 1000px) {
+					.btn_common {
+						background: #4fd934;
+						-webkit-border-radius: 0;
+						-moz-border-radius: 0;
+						border-radius: 0px;
+						text-shadow: 1px 1px 3px #666666;
+						-webkit-box-shadow: 0px 1px 3px #666666;
+						-moz-box-shadow: 0px 1px 3px #666666;
+						box-shadow: 0px 1px 3px #666666;
+						font-family: Arial;
+						color: #ffffff;
+						
+						font-size: 20px;
+						
+						padding: 10px 20px 10px 20px;
+						text-decoration: none;
+						font-weight : bold;
+					}
+					 .btn_inactive {
+						background: #4fd934;
+						background-image: -webkit-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -moz-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -ms-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -o-linear-gradient(top, #4fd934, #3c990e);
+						background-image: linear-gradient(to bottom, #4fd934, #3c990e);
+						
+					 }
+					 .btn_active {
+						 background: #74f05b;
+						 background-image: -webkit-linear-gradient(top, #74f05b, #6ee633);
+						 background-image: -moz-linear-gradient(top, #74f05b, #6ee633);
+						 background-image: -ms-linear-gradient(top, #74f05b, #6ee633);
+						 background-image: -o-linear-gradient(top, #74f05b, #6ee633);
+						 background-image: linear-gradient(to bottom, #74f05b, #6ee633);
+						
+					 }
+					 .btn_prev{
+						background: #4fd934;
+						background-image: -webkit-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -moz-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -ms-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -o-linear-gradient(top, #4fd934, #3c990e);
+						background-image: linear-gradient(to bottom, #4fd934, #3c990e);
+						-webkit-border-radius: 0;
+						-moz-border-radius: 0;
+						border-radius: 0px;
+						text-shadow: 1px 1px 3px #666666;
+						-webkit-box-shadow: 0px 1px 3px #666666;
+						-moz-box-shadow: 0px 1px 3px #666666;
+						box-shadow: 0px 1px 3px #666666;
+						font-family: Arial;
+						color: #ffffff;
+						font-size: 20px;
+						padding: 10px 20px 10px 20px;
+						text-decoration: none;
+						font-weight : bold;
+					 }
+					 .btn_next{
+						background: #4fd934;
+						background-image: -webkit-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -moz-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -ms-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -o-linear-gradient(top, #4fd934, #3c990e);
+						background-image: linear-gradient(to bottom, #4fd934, #3c990e);
+						-webkit-border-radius: 0;
+						-moz-border-radius: 0;
+						border-radius: 0px;
+						text-shadow: 1px 1px 3px #666666;
+						-webkit-box-shadow: 0px 1px 3px #666666;
+						-moz-box-shadow: 0px 1px 3px #666666;
+						box-shadow: 0px 1px 3px #666666;
+						font-family: Arial;
+						color: #ffffff;
+						font-size: 20px;
+						padding: 10px 20px 10px 20px;
+						text-decoration: none;
+						font-weight : bold;
+					 }
+					 
+					 .btn_disabled {
+						<!---> You can remove this and place other code if you want the button tot dissapear and instead just change its color or making it unclickable</!--->
+						background-image: -webkit-linear-gradient(top, #666666, #9b9b8c);
+						background-image: -moz-linear-gradient(top, #666666, #9b9b8c);
+						background-image: -ms-linear-gradient(top, #666666, #9b9b8c);
+						background-image: -o-linear-gradient(top, #666666, #9b9b8c);
+						background-image: linear-gradient(to bottom, #666666, #9b9b8c);
+						font-weight : bold;
+						
+					 }
+   				 }
+				 @media only screen and (max-width: 1000px) {
+					.btn_common {
+						background: #4fd934;
+						-webkit-border-radius: 0;
+						-moz-border-radius: 0;
+						border-radius: 0px;
+						text-shadow: 1px 1px 3px #666666;
+						-webkit-box-shadow: 0px 1px 3px #666666;
+						-moz-box-shadow: 0px 1px 3px #666666;
+						box-shadow: 0px 1px 3px #666666;
+						font-family: Arial;
+						color: #ffffff;
+						
+						font-size: 32px; //mobile buttons size
+						
+						
+						text-decoration: none;
+						font-weight : bold;
+					}
+					 .btn_inactive {
+						background: #4fd934;
+						background-image: -webkit-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -moz-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -ms-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -o-linear-gradient(top, #4fd934, #3c990e);
+						background-image: linear-gradient(to bottom, #4fd934, #3c990e);
+						
+					 }
+					 .btn_active {
+						 background: #74f05b;
+						 background-image: -webkit-linear-gradient(top, #74f05b, #6ee633);
+						 background-image: -moz-linear-gradient(top, #74f05b, #6ee633);
+						 background-image: -ms-linear-gradient(top, #74f05b, #6ee633);
+						 background-image: -o-linear-gradient(top, #74f05b, #6ee633);
+						 background-image: linear-gradient(to bottom, #74f05b, #6ee633);
+						
+					 }
+					 .btn_prev{
+						background: #4fd934;
+						background-image: -webkit-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -moz-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -ms-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -o-linear-gradient(top, #4fd934, #3c990e);
+						background-image: linear-gradient(to bottom, #4fd934, #3c990e);
+						-webkit-border-radius: 0;
+						-moz-border-radius: 0;
+						border-radius: 0px;
+						text-shadow: 1px 1px 3px #666666;
+						-webkit-box-shadow: 0px 1px 3px #666666;
+						-moz-box-shadow: 0px 1px 3px #666666;
+						box-shadow: 0px 1px 3px #666666;
+						font-family: Arial;
+						color: #ffffff;
+						font-size: 32px; //mobile buttons size
+						
+						text-decoration: none;
+						font-weight : bold;
+					 }
+					 .btn_next{
+						background: #4fd934;
+						background-image: -webkit-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -moz-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -ms-linear-gradient(top, #4fd934, #3c990e);
+						background-image: -o-linear-gradient(top, #4fd934, #3c990e);
+						background-image: linear-gradient(to bottom, #4fd934, #3c990e);
+						-webkit-border-radius: 0;
+						-moz-border-radius: 0;
+						border-radius: 0px;
+						text-shadow: 1px 1px 3px #666666;
+						-webkit-box-shadow: 0px 1px 3px #666666;
+						-moz-box-shadow: 0px 1px 3px #666666;
+						box-shadow: 0px 1px 3px #666666;
+						font-family: Arial;
+						color: #ffffff;
+						font-size: 32px; //mobile buttons size
+						
+						text-decoration: none;
+						font-weight : bold;
+					 }
+					 
+					 .btn_disabled {
+						<!---> You can remove this and place other code if you want the button tot dissapear and instead just change its color or making it unclickable</!--->
+						background-image: -webkit-linear-gradient(top, #666666, #9b9b8c);
+						background-image: -moz-linear-gradient(top, #666666, #9b9b8c);
+						background-image: -ms-linear-gradient(top, #666666, #9b9b8c);
+						background-image: -o-linear-gradient(top, #666666, #9b9b8c);
+						background-image: linear-gradient(to bottom, #666666, #9b9b8c);
+						font-weight : bold;
+						
+					 }
+   				 }
+   				
+            </style>
+</script>
+
+
+
+
+</html>
+
+
+
+	
+	
+	
