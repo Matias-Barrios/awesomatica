@@ -125,3 +125,5 @@ Error: Route.post() requires a callback function but got a [object Object]
     at Function.Module.runMain (module.js:442:10)
     at startup (node.js:136:18)
     at node.js:966:3
+Example app listening on port 3000!
+Example app listening on port 3000!
