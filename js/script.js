@@ -1,4 +1,4 @@
-var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.socialshare']);
+var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.socialshare','ngGeolocation']);
   	
 	main_app.config(function (localStorageServiceProvider,$httpProvider) {
 			localStorageServiceProvider
@@ -33,42 +33,16 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
     })
 	
 	
-	main_app.factory('GeoLocationService', function($q, $window, $timeout) {
-		var factoryObj = {};
-
-		factoryObj.getPosition = function() {
-			var deferred;
-			var promiseTimeout = $timeout(function() {
-				deferred.reject(1); // return 1 if browser waited for user input for more than timeout delay
-			}, 3000);
-
-			deferred = $q.defer();
-
-			if(!$window.navigator.geolocation) { // check if geoLocation is not supported by browser
-				$timeout.cancel(promiseTimeout);
-				deferred.reject(false); // return false if geoLocation is not supported
-			}
-			else { // geoLocation is supported
-				$window.navigator.geolocation.getCurrentPosition(function(position) {
-					$timeout.cancel(promiseTimeout);
-					return deferred.resolve(position);
-				}, function(error) {
-					$timeout.cancel(promiseTimeout);
-					return deferred.reject(error.code || 1);
-				});
-			}
-
-			return deferred.promise;
-		};
-
-		return factoryObj;
-	});
 	
 	
 	
-	
-	main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','localStorageService','$location','$filter','GeoLocationService', function($scope,$http,NgTableParams,localStorageService,$location,$filter,GeoLocationService) {
+	main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','localStorageService','$location','$filter','$geolocation', function($scope,$http,NgTableParams,localStorageService,$location,$filter,$geolocation) {
 		//Global variables 
+		$geolocation.watchPosition({
+            timeout: 60000,
+            maximumAge: 250,
+            enableHighAccuracy: true
+        });
 		
 		$scope.fatal_error = false;
 		$scope.activar_navegacion = false;
@@ -82,21 +56,12 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
 		
 		// END GLOBAL VARIABLES
 		$scope.get_user_position = function() {
-			$scope.users_position = {};
-			 GeoLocationService.getPosition().then(
-				function(position) { // 
-					$scope.users_position = position;
-					$scope.show_map = true;
-				},
-				function(errorCode) {
-					if(errorCode === false) {
-						alert('La geolocalizacion no es soportada o esta deshabilitada en este navegador');
-					}
-					else if(errorCode == 1) {
-						alert('No se ha habilitado la geolocalizacion');
-					}
-				}
-			);
+			$scope.users_position = $geolocation.position;
+			$scope.show_map = true;
+			if ( $scope.users_position.error ) {
+				alert("Imposible determinar su posicion! Por favor habilite el GPS...");
+			}
+			
 		};
 		$scope.enable_buttons = function(){
 			$scope.carrousel_toggle = true;
