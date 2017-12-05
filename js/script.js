@@ -44,6 +44,11 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
             enableHighAccuracy: true
         });
 		
+		$scope.$watch('users_position', function(newValue, oldValue) { 
+			alert("Changes occurred");
+
+		});
+		
 		$scope.fatal_error = false;
 		$scope.activar_navegacion = false;
 		$scope.show_main = true;
@@ -56,10 +61,12 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
 		
 		// END GLOBAL VARIABLES
 		$scope.get_user_position = function() {
+			$geolocation.getCurrentPosition();
 			$scope.users_position = $geolocation.position;
+			console.log(JSON.stringify($geolocation.position));
 			$scope.show_map = true;
 			if ( $scope.users_position.error ) {
-				alert("Imposible determinar su posicion! Por favor habilite el GPS...");
+				alert("Imposible determinar su posicion! Por favor habilite el GPS... " + JSON.stringify($scope.users_position.error));
 			}
 			
 		};
