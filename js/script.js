@@ -44,11 +44,7 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
             enableHighAccuracy: true
         });
 		
-		$scope.$watch('users_position', function(newValue, oldValue) { 
-			alert("Changes occurred");
-
-		});
-		
+				
 		$scope.fatal_error = false;
 		$scope.activar_navegacion = false;
 		$scope.show_main = true;
