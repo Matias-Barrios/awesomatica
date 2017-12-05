@@ -33,10 +33,41 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
     })
 	
 	
+	main_app.factory('GeoLocationService', function($q, $window, $timeout) {
+		var factoryObj = {};
+
+		factoryObj.getPosition = function() {
+			var deferred;
+			var promiseTimeout = $timeout(function() {
+				deferred.reject(1); // return 1 if browser waited for user input for more than timeout delay
+			}, 3000);
+
+			deferred = $q.defer();
+
+			if(!$window.navigator.geolocation) { // check if geoLocation is not supported by browser
+				$timeout.cancel(promiseTimeout);
+				deferred.reject(false); // return false if geoLocation is not supported
+			}
+			else { // geoLocation is supported
+				$window.navigator.geolocation.getCurrentPosition(function(position) {
+					$timeout.cancel(promiseTimeout);
+					return deferred.resolve(position);
+				}, function(error) {
+					$timeout.cancel(promiseTimeout);
+					return deferred.reject(error.code || 1);
+				});
+			}
+
+			return deferred.promise;
+		};
+
+		return factoryObj;
+	});
 	
 	
 	
-	main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','localStorageService','$location','$filter', function($scope,$http,NgTableParams,localStorageService,$location,$filter) {
+	
+	main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','localStorageService','$location','$filter','GeoLocationService', function($scope,$http,NgTableParams,localStorageService,$location,$filter,GeoLocationService) {
 		//Global variables 
 		
 		$scope.fatal_error = false;
@@ -44,12 +75,29 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
 		$scope.show_main = true;
 		$scope.show_horoscopo = false;
 		$scope.show_trabajo_ofrecido = false;
+		$scope.show_map = false;
 		var pagina = $location.search().pagina;
 		var filtro = $location.search().filtro;
 		
 		
 		// END GLOBAL VARIABLES
-		
+		$scope.get_user_position = function() {
+			$scope.users_position = {};
+			 GeoLocationService.getPosition().then(
+				function(position) { // 
+					$scope.users_position = position;
+					$scope.show_map = true;
+				},
+				function(errorCode) {
+					if(errorCode === false) {
+						alert('La geolocalizacion no es soportada o esta deshabilitada en este navegador');
+					}
+					else if(errorCode == 1) {
+						alert('No se ha habilitado la geolocalizacion');
+					}
+				}
+			);
+		};
 		$scope.enable_buttons = function(){
 			$scope.carrousel_toggle = true;
 		}
@@ -88,8 +136,8 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
 													}
 												}
 											})
-										var theData = angular.copy($scope.api_response);
-										var filteredData = params.filter() ? $filter('filter')(theData, filters) : theData;
+										
+										var filteredData = params.filter() ? $filter('filter')($scope.api_response, filters) : $scope.api_response;
 										
 										orderedData = $filter('orderBy')(filteredData, params.orderBy());
 										$scope.table_filtered_and_ordered_data = orderedData;
@@ -168,8 +216,8 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
 													}
 												}
 											})
-										var theData = angular.copy(my_array_of_avisos);
-										var filteredData = params.filter() ? $filter('filter')(theData, filters) : theData;
+										
+										var filteredData = params.filter() ? $filter('filter')(my_array_of_avisos, filters) : my_array_of_avisos;
 										
 										orderedData = $filter('orderBy')(filteredData, params.orderBy());
 										$scope.table_filtered_and_ordered_data = orderedData;
@@ -235,8 +283,8 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
 													}
 												}
 											})
-										var theData = angular.copy($scope.api_response_t_ofrecido);
-										var filteredData = params.filter() ? $filter('filter')(theData, filters) : theData;
+										
+										var filteredData = params.filter() ? $filter('filter')($scope.api_response_t_ofrecido, filters) : $scope.api_response_t_ofrecido;
 										
 										orderedData = $filter('orderBy')(filteredData, params.orderBy());
 										$scope.table_filtered_and_ordered_data_t_ofrecidos = orderedData;
