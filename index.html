@@ -58,7 +58,7 @@
 				<p><h4 id="texto_guia_de_lugares" >Guía de lugares</h4></p>
 				<p ng-show="total_number_of_avisos != 0" > <b> Viendo <font color="#006cd9"> {{ number_of_filtered_results }}</font> de <font color="#006cd9"> {{ total_number_of_avisos }}</font> </b></p>
 			</div>
-			<div class="geo_location_div">
+			<div ng-show="false" class="geo_location_div">
 				<div class="geo_location_buttons_div">
 					<button ng-click="get_user_position()" class="geo_location_buttons red_button" ><span class="button_text">¿Donde estoy? <i class="fa fa-map-marker" aria-hidden="true"></i> </span></button>
 				</div>
