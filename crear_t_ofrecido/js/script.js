@@ -58,7 +58,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		$scope.uploadImage();
 		$http({
 							method: 'POST',
-							url: 'http://45.33.116.147:3000/crear_t_ofrecido',
+							url: 'http://45.56.89.82:3000/crear_t_ofrecido',
 							headers: {
 							   'Content-Type': 'application/json'
 							},
