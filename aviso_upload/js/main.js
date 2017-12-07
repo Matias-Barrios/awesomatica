@@ -46,7 +46,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		post_data.file_content = $scope.aviso;
 		$http({
 							method: 'POST',
-							url: 'http://45.33.116.147:3000/put_aviso',
+							url: 'http://45.56.89.82:3000/put_aviso',
 							headers: {
 							   'Content-Type': 'application/json'
 							},
@@ -73,7 +73,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
       var imgBlob = dataURItoBlob($scope.uploadme);
       fd.append('file', imgBlob);
       $http.post(
-          'http://45.33.116.147:4000/upload_aviso',
+          'http://45.56.89.82:4000/upload_aviso',
           fd, {
             transformRequest: angular.identity,
             headers: {
