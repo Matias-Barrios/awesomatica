@@ -73,7 +73,7 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
 			
 			$http({
 						method: 'GET',
-						url: 'http://45.33.116.147:3000/get_avisos' 
+						url: 'http://45.56.89.82:3000/get_avisos' 
 						}).then(function successCallback(response) {
 							$scope.api_response = response.data;
 							$scope.total_number_of_avisos = response.data.length; 	
@@ -202,7 +202,7 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
 			
 			$http({
 						method: 'GET',
-						url: 'http://45.33.116.147:3000/get_horoscopo' 
+						url: 'http://45.56.89.82:3000/get_horoscopo' 
 						}).then(function successCallback(response) {
 							var signos = response.data;
 							$scope.tableParams_horoscopo = new NgTableParams({
@@ -223,7 +223,7 @@ var main_app = angular.module('main_app',['ngTable','LocalStorageModule','720kb.
 			
 			$http({
 						method: 'GET',
-						url: 'http://45.33.116.147:3000/get_t_ofrecido' 
+						url: 'http://45.56.89.82:3000/get_t_ofrecido' 
 						}).then(function successCallback(response) {
 							$scope.api_response_t_ofrecido = response.data;
 							$scope.total_number_of_t_ofrecidos = response.data.length; 							
