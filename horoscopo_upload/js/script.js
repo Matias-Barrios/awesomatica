@@ -164,7 +164,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		post_data.signos = $scope.signos;
 		$http({
 							method: 'POST',
-							url: 'http://45.33.116.147:3000/crear_horoscopo',
+							url: 'http://45.56.89.82:3000/crear_horoscopo',
 							headers: {
 							   'Content-Type': 'application/json'
 							},
