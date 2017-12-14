@@ -58,6 +58,23 @@ function Get_Aviso(aviso,callback){
 	}
 	callback(results,errors);
  }
+function Get_t_ofrecido(t_ofrecido,callback){
+	const testFolder = '/data/t_ofrecido/';
+	const fs = require('fs');
+	var results = [];
+	var errors = "";
+	try {
+	
+		var obj = JSON.parse(fs.readFileSync(testFolder + t_ofrecido,"utf8"));
+		obj.id = t_ofrecido;
+		callback(obj,errors);
+		
+	} catch (err) {
+		console.log(err);
+		callback(results,err);
+	}
+	callback(results,errors);
+ }
 function Get_t_ofrecidos(callback){
 	const testFolder = '/data/t_ofrecido/';
 	const fs = require('fs');
@@ -203,6 +220,26 @@ app.get('/get_horoscopo', function (req, res) {
 app.get('/get_aviso', function (req, res) {
   var aid = req.query.aviso_id;
   Get_Aviso( aid,function (results,errors){
+	  if(errors) {
+		res.header('Access-Control-Allow-Origin', '*');
+    		res.header('Access-Control-Allow-Methods', '*');
+    		res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+		res.header('Content-Type', 'text/html'); 
+		res.status(500).end('Something weird happened!! : ' + errors);
+	  } else {
+		res.header('Access-Control-Allow-Origin', '*');
+    		res.header('Access-Control-Allow-Methods', '*');
+    		res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+		res.header('Content-Type', 'application/json'); 
+		res.status(200).end(JSON.stringify(results));
+	  }
+  });
+  
+});
+
+app.get('/get_t_orecido', function (req, res) {
+  var to_id = req.query.to_id;
+  Get_t_ofrecido( to_id,function (results,errors){
 	  if(errors) {
 		res.header('Access-Control-Allow-Origin', '*');
     		res.header('Access-Control-Allow-Methods', '*');
