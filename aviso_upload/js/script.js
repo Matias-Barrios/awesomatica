@@ -41,7 +41,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		$scope.cargar_error = "";
 		$http({
 							method: 'GET',
-							url: 'http://45.56.89.82:3000/get_aviso?aviso_id=' + $scope.cargar_anuncio_text,
+							url: 'http://45.56.89.82:3000/get_aviso?aviso_id=' + $scope.cargar_anuncio_text + '.json',
 														
 							  
 							}).then(function successCallback(response) {
