@@ -29,7 +29,7 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		$scope.cargar_error = "";
 		$http({
 							method: 'GET',
-							url: 'http://45.56.89.82:3000/get_t_ofrecido?to_id=' + $scope.cargar_to_text + '.json',
+							url: 'http://45.56.89.82:3000/get_trabajo_ofrecido?to_id=' + $scope.cargar_to_text + '.json',
 														
 							  
 							}).then(function successCallback(response) {
