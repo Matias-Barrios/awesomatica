@@ -79,8 +79,10 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		else
 			post_data.file_name = $scope.cargar_to_text.replace(".json","");
 		post_data.file_content = $scope.t_ofrecido;
-		$scope.t_ofrecido.images[0].src = "images/" + "foto_avisos_" + $scope.theFile.name;
-		$scope.uploadImage();
+		if ($scope.theFile) {
+			$scope.t_ofrecido.images[0].src = "images/" + "foto_avisos_" + $scope.theFile.name;
+			$scope.uploadImage();
+		}
 		$http({
 							method: 'POST',
 							url: 'http://45.56.89.82:3000/crear_t_ofrecido',
