@@ -237,7 +237,7 @@ app.get('/get_aviso', function (req, res) {
   
 });
 
-app.get('/get_t_ofrecido', function (req, res) {
+app.get('/get_trabajo_ofrecido', function (req, res) {
   var to_id = req.query.to_id;
   Get_t_ofrecido( to_id,function (results,errors){
 	  if(errors) {
