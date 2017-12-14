@@ -129,6 +129,18 @@ body {
 }
 
 
+.load_file {
+	padding : 2%;
+	border-radius : 20px;
+	border : 2px solid black;
+	background-color : #2693ff;
+}
+
+
+.cargar_boton {
+	width : 100%;
+	height : 24%;
+}
 
 
 

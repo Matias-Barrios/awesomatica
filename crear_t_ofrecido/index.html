@@ -26,7 +26,13 @@
 			<div class="col-md-12 info_div">
 				<label> API Password : </label><BR>
 				<input input type="password" maxlength="30"  class="input_aviso" id="api_password" type="text" ng-model="api_password_input"></input><BR>
-								
+				<div class="load_file" >
+					<label> Cargar trabajo ofrecido : </label><BR>
+					<input maxlength="40"  class="input_aviso" type="text" ng-model="cargar_to_text"></input><BR>
+					<button class="btn-success cargar_boton" ng-show="cargar_to_text && cargar_to_text != ''" ng-click="cargar_to(cargar_to_text)" >Cargar</button>
+					<p ng-show="cargar_error" ><font color="white" >{{ cargar_error }} </font></p>
+				</div>
+				<BR>				
 				<BR>
 				<label> Titulo : </label><BR>
 				<input maxlength="100" class="input_aviso" id="aviso_titulo" type="text" ng-model="t_ofrecido.titulo" ></input><BR>

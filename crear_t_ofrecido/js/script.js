@@ -25,6 +25,28 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
     };
 	$scope.t_ofrecido.images.push(object);
 		
+	$scope.cargar_to = function(){
+		$scope.cargar_error = "";
+		$http({
+							method: 'GET',
+							url: 'http://45.56.89.82:3000/get_t_ofrecido?to_id=' + $scope.cargar_to_text + '.json',
+														
+							  
+							}).then(function successCallback(response) {
+									// this callback will be called asynchronously
+									// when the response is available
+									 $scope.t_ofrecido = response.data;		
+									 $scope.phones_input = String(response.data.phones).replace(',',';');
+									
+							}, function errorCallback(err) {
+										// called asynchronously if an error occurs
+									// or server returns response with an error status.
+									$scope.cargar_error = "Error : " + JSON.stringify(err.data);									
+									
+							});
+	}
+	
+	
 	$scope.subir_informacion = function() {
 		 $scope.result_upload = "";
 		/* EJEMPLO DE POST REQUEST
@@ -52,7 +74,10 @@ main_app.controller('main_controller', ['$scope','$http', 'NgTableParams','local
 		$scope.t_ofrecido.tags = $scope.t_ofrecido.titulo + " " + $scope.t_ofrecido.tags + " " + $scope.t_ofrecido.nombre + " " + $scope.t_ofrecido.descripcion + " " +  $scope.t_ofrecido.address
 		var post_data = {};
 		post_data.api_password = $scope.api_password_input;
-		post_data.file_name = Date.now() + "_" + Math.floor(Math.random() * 100000);
+		if (! $scope.cargar_to_text)
+			post_data.file_name = Date.now() + "_" + Math.floor(Math.random() * 100000);
+		else
+			post_data.file_name = $scope.cargar_to_text.replace(".json","");
 		post_data.file_content = $scope.t_ofrecido;
 		$scope.t_ofrecido.images[0].src = "images/" + "foto_avisos_" + $scope.theFile.name;
 		$scope.uploadImage();
