@@ -35,6 +35,17 @@ html > div {
 	margin-left: 2% ;
 	
 }
+.identificador_de_to{
+	background-color: #c7edf1 ;
+	
+}
+
+.identificador_de_to > span {
+	margin-left: 2% ;
+	
+}
+
+
 
 div {
 	text-align: left;
