@@ -81,8 +81,8 @@
 											<span> <a class="text_telefono" href="tel:{{ phone }}">{{::phone}}</a> </span> </span> 
 											
 										</p>
-									<p class="texto_aviso info_aviso"> <span class="application_text" > Horarios : </span> {{ ::aviso.horarios }} </p>				
-									<p class="texto_aviso info_aviso"> <span class="application_text" > Descripcion : </span> {{ ::aviso.description }} </p>				
+									<p class="texto_aviso info_aviso" ng-show="aviso.horarios" > <span class="application_text"  > Horarios : </span> {{ ::aviso.horarios }} </p>				
+									<p class="texto_aviso info_aviso" ng-show="aviso.description" > <span class="application_text"  > Descripcion : </span> {{ ::aviso.description }} </p>				
 								</div>
 								<div class="aviso_en_celda_fotos">
 									<img class="imagen_estatica" ng-src="{{ aviso.images[aviso.current_image].src }}" imageonload="enable_buttons()()"   ></img>
