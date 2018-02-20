@@ -163,6 +163,16 @@ function Get_Horoscopo(callback){
 
 
 // GET Methdods
+app.get('/health', function (req, res) {
+	console.log("Request received : " + req.url);
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Methods', '*');
+	res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+	res.header('Content-Type', 'application/json'); 
+	res.status(200).end("Im okay!");
+  
+});
+
 app.get('/get_avisos', function (req, res) {
   Get_Avisos( function (results,errors){
 	  if(errors) {
